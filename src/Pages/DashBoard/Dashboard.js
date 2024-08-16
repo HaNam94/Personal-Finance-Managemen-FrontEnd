@@ -1,13 +1,8 @@
-import Lottie from "lottie-react";
-import WalletBounce from "../../LottieData/walletBounce.json"
-import PolarBasic from "../../Components/Chart/PolarBasic";
-import IncomeSvg from "../../Components/Icon/IncomeSvg";
-import OutComeSvg from "../../Components/Icon/OutComeSvg";
 import DWallet from "./DWallet";
 import DTransaction from "./DTransaction";
-import {Link} from "react-router-dom";
 import DBudget from "./DBudget";
 import DWidget from "./DWidget";
+
 export default function Dashboard() {
 
 

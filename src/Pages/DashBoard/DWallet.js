@@ -10,7 +10,7 @@ import Skeleton from "react-loading-skeleton";
 
 function DWallet() {
   const { t } = useTranslation();
-  const [wallets, setWallets] = useState(null);
+  const [wallets, setWallets] = useState([]);
   const [exchangeRates, setExchangeRates] = useState(null);
   const [loading, setLoading] = useState(true);
 

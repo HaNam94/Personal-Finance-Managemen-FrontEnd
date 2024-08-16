@@ -26,6 +26,7 @@ function Transaction() {
               categoryType,
               page
             });
+              console.log(response)
             setTransactions(response.data.content);
             setTotalPages(response.data.totalPages);
           } catch (error) {
@@ -80,81 +81,64 @@ function Transaction() {
     );
   };
 
-  const transactionsGrouped = Helper.groupBy(transactions, "datetime");
-  const sortedTransactions = Helper.sortStringDate(Object.keys(transactionsGrouped));
-  const renderTransactions = () => {
-    return sortedTransactions.map((datetime) => {
-      console.log(datetime);
-      return (
-        <div key={datetime} className="p-3 bg-white mb-3 rounded-1">
-          <h4 className="mb-3"><span className="badge light badge-secondary">{datetime}</span></h4>
-          {transactionsGrouped[datetime].map((transaction, j) => {
-            console.log(transaction);
-            return (
-              <TransactionItem key={transaction.id}
-               transaction={transaction}
-               deleteBtn={<TransactionDelete transactionId={transaction.id} reload={setLoading}/>}
-               editBtn={<TransactionEditModal transactionId={transaction.id} reload={setLoading}/>}
-               />
-            )
-          })}
-        </div>
-      );
-    })
-  }
-
-
-  return (
-      <div>
-          <div className="d-flex flex-wrap align-items-center mb-3">
-              <div className="me-auto">
-                  <div className="card-tabs style-1 mt-3 mt-sm-0">
-                      <ul className="nav nav-tabs" role="tablist">
-                          <li className="nav-item">
-                              <button className={categoryType === 2 ? "nav-link active" : "nav-link"} onClick={() => handleTypeChange(2)}>Tất cả</button>
-                          </li>
-                          <li className="nav-item">
-                              <button className={categoryType === 1 ? "nav-link active" : "nav-link"} onClick={() => handleTypeChange(1)}>Thu</button>
-                          </li>
-                          <li className="nav-item">
-                              <button className={categoryType === 0 ? "nav-link active" : "nav-link"} onClick={() => handleTypeChange(0)}>Chi</button>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-              <TransactionActionModal reload={setLoading}/>
-          </div>
-          <div className="row">
-              <div className="col-12">
-                  {
-                      loading ? (
-                          <Skeleton count={2} height={200}/>
-                      ) : (
-                          <>{
-                            transactions.length === 0 ?
-                                  (<div className="w-25 mx-auto pb-5">
-                                      <Lottie animationData={AniEmpty}
-                                      />
-                                  </div> ): (
-                                <>
-                                  {
-                                    renderTransactions()
-                                  }
-                                  <div className="d-flex justify-content-center mt-3">
-                                    {renderPagination()}
-                                  </div>
-                                </>)
-                          }
-                          < />
-                      )
-                  }
-              </div>
-            <div className="col-12">
-
+    return (
+        <div>
+            <div className="d-flex flex-wrap align-items-center mb-3">
+                <div className="me-auto">
+                    <div className="card-tabs style-1 mt-3 mt-sm-0">
+                        <ul className="nav nav-tabs" role="tablist">
+                            <li className="nav-item">
+                                <button className={categoryType === 2 ? "nav-link active" : "nav-link"} onClick={() => handleTypeChange(2)}>Tất cả</button>
+                            </li>
+                            <li className="nav-item">
+                                <button className={categoryType === 1 ? "nav-link active" : "nav-link"} onClick={() => handleTypeChange(1)}>Thu</button>
+                            </li>
+                            <li className="nav-item">
+                                <button className={categoryType === 0 ? "nav-link active" : "nav-link"} onClick={() => handleTypeChange(0)}>Chi</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <TransactionActionModal reload={setLoading}/>
             </div>
-          </div>
-      </div>
-  )
+            <div className="row">
+                <div className="col-12">
+                    {
+                        loading ? (
+                            <Skeleton count={2} height={200}/>
+                        ) : (
+                            <>{
+                              transactions.length === 0 ?
+                                    (<div className="w-25 mx-auto pb-5">
+                                        <Lottie animationData={AniEmpty}
+                                        />
+                                    </div> ): (
+                                  <>{
+                                    transactions.map((transaction, i) =>
+                                      (<TransactionItem key={transaction.id}
+                                                        transaction={transaction}
+                                                        deleteBtn={<TransactionDelete
+                                                          transactionId={transaction.id} reload={setLoading}
+                                                        />}
+                                                        editBtn={<TransactionEditModal transactionId={transaction.id}
+                                                                                       reload={setLoading}/>}
+                                      />))
+                                  }
+                                    <div className="d-flex justify-content-center mt-3">
+                                      {renderPagination()}
+                                    </div>
+                                  </>)
+                            }
+                            < />
+                        )
+                    }
+                </div>
+              <div className="col-12">
+
+              </div>
+            </div>
+        </div>
+    )
 }
 
 export default Transaction;
