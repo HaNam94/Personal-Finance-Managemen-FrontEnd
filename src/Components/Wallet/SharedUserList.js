@@ -3,8 +3,10 @@ import axios from 'axios';
 import Helper from "../../utils/helpers";
 import UnshareModal from "../../Pages/Wallet/UnshareModal";
 import WalletApi from "../../Apis/WalletApi";
+import {useTranslation} from "react-i18next";
 
 function SharedUserList({ sharedUsers, walletId, onUpdateRole, handleUnshare }) {
+  const { t } = useTranslation();
   const [roles, setRoles] = useState(
     sharedUsers.reduce((acc, user) => {
       acc[user.userId] = user.role;
@@ -37,10 +39,10 @@ function SharedUserList({ sharedUsers, walletId, onUpdateRole, handleUnshare }) 
       {sharedUsers.map(user => (
         <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
           <div>
-            <div><strong>UserName:</strong> {user.userName}</div>
-            <div><strong>Email:</strong> {user.userEmail}</div>
+            <div><strong>{t("userName")}</strong> {user.userName}</div>
+            <div><strong>{t("email")}</strong> {user.userEmail}</div>
             <div>
-              <strong>Vai trò:</strong>
+              <strong>{t("role")}</strong>
               <select
                 value={roles[user.userId]}
                 onChange={(e) => handleRoleChange(user.userId, e.target.value)}

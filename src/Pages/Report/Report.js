@@ -4,24 +4,25 @@ import {useSelector} from "react-redux";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import Select from "react-select";
 import Helper from "../../utils/helpers";
-import TransactionActionModal from "../Transaction/TransactionActionModal";
-import Skeleton from "react-loading-skeleton";
-import Lottie from "lottie-react";
-import AniEmpty from "../../LottieData/empty.json";
 import {FormattedNumber} from "react-intl";
 import {useTranslation} from "react-i18next";
 import TransactionApi from "../../Apis/TransactionApi";
+import BarChart from "../../Components/Chart/BarChart";
+import useCurrencyConverter from "../../effect/useCurrencyConverter";
 
 function Report() {
     const [transactions, setTransactions] = useState(null);
     const [category, setCategory] = useState({ id: '', categoryName: 'Phân loại', icon: "icon_000" });
     const [wallet, setWallet] = useState({ id: '', walletName: 'Ví tiền', icon: "icon_000" });
-    const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+    const [startDate, setStartDate] = useState(moment().subtract(7, 'days'));
     const [endDate, setEndDate] = useState(moment());
     const categories = useSelector((state) => state.category.allCategories);
     const wallets = useSelector((state) => state.wallet.wallets);
     const { t } = useTranslation();
     const [loading, setLoading] = useState(true);
+    const { convertCurrency } = useCurrencyConverter();
+    const uCurrency = useSelector((state) => state.auth.user.setting.currency);
+    const formatDate = useSelector((state) => state.auth.user.setting.formatDate);
 
 
     useEffect(() => {
@@ -31,6 +32,8 @@ function Report() {
                 const res = await TransactionApi.search({
                     startDate: startDate.format('YYYY-MM-DD'),
                     endDate: endDate.format('YYYY-MM-DD'),
+                    categoryId: category?.id,
+                    walletId: wallet?.id,
                 });
                 setTransactions(res.data);
             } catch (error) {
@@ -41,7 +44,7 @@ function Report() {
         };
         fetchTransactions();
 
-    }, [startDate]);
+    }, [startDate, category, wallet]);
 
     const handleCategoryChange = (newCategory) => {
         setCategory(newCategory);
@@ -55,8 +58,55 @@ function Report() {
     };
     const sumAmount = (categoryType) => {
         return transactions.filter(transaction => transaction.categoryType === categoryType)
-            .reduce((sum, transaction) => sum + transaction.amount, 0);
+            .reduce((sum, transaction) => sum + convertCurrency(transaction.amount, transaction.walletCurrency), 0);
     }
+    const generateXAxis = () => {
+        let dates = [];
+        let currentDate = moment(startDate);
+
+        while (currentDate <= endDate) {
+            dates.push(currentDate.format(formatDate));
+            currentDate = currentDate.add(1, 'days');
+        }
+
+        return dates;
+    }
+    const generateChartData = () => {
+        const transactionSums = {};
+
+        transactions.forEach(transaction => {
+            const date = moment(transaction.datetime).format('YYYY-MM-DD');
+            const type = transaction.categoryType === 1 ? 'Thu' : 'Chi';
+            if (!transactionSums[date]) {
+                transactionSums[date] = { Thu: 0, Chi: 0 };
+            }
+            transactionSums[date][type] += convertCurrency(transaction.amount, transaction.walletCurrency).toFixed(2);
+        });
+
+        const dateRange = [];
+        let currentDate = moment(startDate);
+        while (currentDate.isSameOrBefore(endDate, 'day')) {
+            dateRange.push(currentDate.format('YYYY-MM-DD'));
+            currentDate = currentDate.add(1, 'day');
+        }
+
+        const thuData = [];
+        const chiData = [];
+
+        dateRange.forEach(date => {
+            thuData.push(transactionSums[date]?.Thu || 0);
+            chiData.push(transactionSums[date]?.Chi || 0);
+        });
+        console.log([
+            { name: 'Thu', data: thuData },
+            { name: 'Chi', data: chiData }
+        ])
+        return [
+            { name: 'Thu', data: thuData },
+            { name: 'Chi', data: chiData }
+        ];
+    };
+
     return (
         <div>
             <div className="d-flex flex-wrap align-items-center mb-3">
@@ -76,7 +126,7 @@ function Report() {
                             <input
                                 type="text"
                                 className="form-control"
-                                value={`${startDate.format('DD/MM/YYYY')} - ${endDate.format('DD/MM/YYYY')}`}
+                                value={`${startDate.format(formatDate)} - ${endDate.format(formatDate)}`}
                                 readOnly
                             />
                         </div>
@@ -120,67 +170,72 @@ function Report() {
                 </div>
             </div>
             <div className="row">
-                <>
-                    <div className="col-4">
-                        <div className="card progress-card">
-                            <div className="card-body d-flex">
-                                <div className="me-auto">
-                                    <h4 className="card-title mb-0">{t("totalTransactions")}</h4>
-                                    <span className="fs-12">{t("currentMonth")}</span>
-                                    <div className="d-flex align-items-center mt-2">
-                                        <h2 className="fs-34 mb-0 me-3">{
+                <div className="col-4">
+                    <div className="card progress-card">
+                        <div className="card-body d-flex">
+                            <div className="me-auto">
+                                <h4 className="card-title mb-0">{t("totalTransactions")}</h4>
+                                <span className="fs-12">{t("currentMonth")}</span>
+                                <div className="d-flex align-items-center mt-2">
+                                    <h2 className="fs-34 mb-0 me-3">{
+                                        loading ? "-" :
+                                            transactions.length
+                                    }</h2>
+                                    <span className="badge badge-danger">-10.5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-4">
+                    <div className="card progress-card">
+                        <div className="card-body d-flex">
+                            <div className="me-auto">
+                                <h4 className="card-title mb-0">{t("totalIncome")}</h4>
+                                <span className="fs-12">{t("currentMonth")}</span>
+                                <div className="d-flex align-items-center mt-2">
+                                    <h2 className="fs-34 mb-0 me-3">
+                                        {
                                             loading ? "-" :
-                                                transactions.length
-                                        }</h2>
-                                        <span className="badge badge-danger">-10.5%</span>
-                                    </div>
+                                                <FormattedNumber value={sumAmount(1)} style="currency" currency={uCurrency}/>
+                                        }
+
+
+                                    </h2>
+                                    <span className="badge badge-success">+0.5%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-4">
-                        <div className="card progress-card">
-                            <div className="card-body d-flex">
-                                <div className="me-auto">
-                                    <h4 className="card-title mb-0">{t("totalIncome")}</h4>
-                                    <span className="fs-12">{t("currentMonth")}</span>
-                                    <div className="d-flex align-items-center mt-2">
-                                        <h2 className="fs-34 mb-0 me-3">
-                                            {
-                                                loading ? "-" :
-                                                    <FormattedNumber value={sumAmount(1)} style="currency" currency={"VND"}/>
-                                            }
-
-
-                                        </h2>
-                                        <span className="badge badge-success">+0.5%</span>
-                                    </div>
+                </div>
+                <div className="col-4">
+                    <div className="card progress-card">
+                        <div className="card-body d-flex">
+                            <div className="me-auto">
+                                <h4 className="card-title mb-0">{t("totalExpense")}</h4>
+                                <span className="fs-12">{t("currentMonth")}</span>
+                                <div className="d-flex align-items-center mt-2">
+                                    <h2 className="fs-34 mb-0 me-3">
+                                        {
+                                            loading ? "-" :
+                                                <FormattedNumber value={sumAmount(0)} style="currency" currency={uCurrency}/>
+                                        }
+                                    </h2>
+                                    <span className="badge badge-danger">-1.5%</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col-4">
-                        <div className="card progress-card">
-                            <div className="card-body d-flex">
-                                <div className="me-auto">
-                                    <h4 className="card-title mb-0">{t("totalExpense")}</h4>
-                                    <span className="fs-12">{t("currentMonth")}</span>
-                                    <div className="d-flex align-items-center mt-2">
-                                        <h2 className="fs-34 mb-0 me-3">
-                                            {
-                                                loading ? "-" :
-                                                    <FormattedNumber value={sumAmount(0)} style="currency" currency={"VND"}/>
-                                            }
-                                        </h2>
-                                        <span className="badge badge-danger">-1.5%</span>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+                <div className="col-12">
+                    <div className="card">
+                        <div className="card-body">
+                            {
+                                !loading && <BarChart data={generateChartData()} xaxis={generateXAxis()}/>
+                            }
                         </div>
                     </div>
-
-
-                </>
+                </div>
             </div>
         </div>
 

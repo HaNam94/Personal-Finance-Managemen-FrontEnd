@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Helper from "../../utils/helpers";
 import { useSelector } from "react-redux";
 import WalletApi from "../../Apis/WalletApi";
+import {useTranslation} from "react-i18next";
 
 function WalletActionContent({ walletId, closeModal, handleSetNewShare, setIsLoading }) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('READ_ONLY'); // Mặc định là READ_ONLY
   const user = useSelector((state) => state.auth.user);
@@ -44,7 +46,7 @@ function WalletActionContent({ walletId, closeModal, handleSetNewShare, setIsLoa
     <form onSubmit={handleSubmit} id={"form-shared-waller"}>
       <div className="mb-3">
         <label htmlFor="email" className="form-label">
-          Nhập mail của người dùng
+        {t("typeMailUser")}
         </label>
         <input
           type="email"
@@ -58,7 +60,7 @@ function WalletActionContent({ walletId, closeModal, handleSetNewShare, setIsLoa
       </div>
 
       <div className="mb-3">
-        <label htmlFor="role" className="form-label">Chọn quyền:</label>
+        <label htmlFor="role" className="form-label">{t("role")}</label>
         <select
           id="role"
           className="form-select"

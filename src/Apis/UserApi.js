@@ -20,6 +20,9 @@ class UserApi {
     return axiosInstance.delete('/api/v1/user/delete');
   }
 
+  static async updateSettingUser(data) {
+    return axiosInstance.put('/api/v1/user/me/setting', data);
+  }
 }
 
 export default UserApi;

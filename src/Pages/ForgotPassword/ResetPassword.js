@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import Footer from "../../Components/Footer";
-import { useMemo } from "react";
-import Orb from "../../Components/Orb/Orb";
-import { Link, useLocation,useNavigate } from "react-router-dom";
+import React, { useState, useMemo } from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Helper from '../../utils/helpers';
+import Footer from "../../Components/Footer";
+import Orb from "../../Components/Orb/Orb";
+import PasswordInput from '../../Components/Auth/PasswordInput';
 
 function ResetPassword() {
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState(''); // Thêm trạng thái cho confirmPassword
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
   const query = new URLSearchParams(useLocation().search);
   const token = query.get('token');
   const navigate = useNavigate();
 
-  
   const orbMemo = useMemo(() => {
     return <Orb />;
   }, []);
@@ -26,7 +25,7 @@ function ResetPassword() {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/public/reset-password', {
+      await axios.post('http://localhost:8080/api/v1/public/reset-password', {
         token,
         newPassword: password,
       }, {
@@ -40,7 +39,6 @@ function ResetPassword() {
       Helper.parseError(error);
     }
   };
-  
 
   return (
     <div id="main-wrapper" className="login-page">
@@ -60,34 +58,20 @@ function ResetPassword() {
                     <h3 className="text-center mb-4 mt-2">Đặt lại mật khẩu</h3>
                     {message && <div className="alert alert-info text-center">{message}</div>}
                     <form onSubmit={handleResetPassword}>
-                      <div className="mb-3">
-                        <label className="mb-1">
-                          <strong>Mật khẩu mới</strong>
-                        </label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          placeholder="Nhập mật khẩu mới"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          required
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label className="mb-1">
-                          <strong>Xác nhận mật khẩu</strong>
-                        </label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          placeholder="Nhập lại mật khẩu mới"
-                          value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
-                          required
-                        />
-                      </div>
+                      <PasswordInput
+                        label="Mật khẩu mới"
+                        placeholder="Nhập mật khẩu mới"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <PasswordInput
+                        label="Xác nhận mật khẩu"
+                        placeholder="Nhập lại mật khẩu mới"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                      />
                       <div className="text-center">
-                        <button type="submit" className="btn btn-primary btn-block" >
+                        <button type="submit" className="btn btn-primary btn-block">
                           Đặt lại mật khẩu
                         </button>
                       </div>
@@ -95,7 +79,7 @@ function ResetPassword() {
                     <div className="new-account mt-3">
                       <p>
                         Quay lại{" "}
-                        <Link to={"/"} className="text-primary">
+                        <Link to="/" className="text-primary">
                           Trang chủ
                         </Link>
                       </p>

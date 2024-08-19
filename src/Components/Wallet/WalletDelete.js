@@ -1,10 +1,8 @@
 import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-
-
-
-
+import {useTranslation} from "react-i18next";
 function WalletDelete({handleDelete}) {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,7 +11,7 @@ function WalletDelete({handleDelete}) {
   return (
     <>
       <Button className="btn-sm ms-2 btn-danger" variant="danger" onClick={handleShow}>
-        Xóa ví tiền
+      {t("deleteWallet")}
       </Button>
 
       <Modal show={show} onHide={handleClose}>

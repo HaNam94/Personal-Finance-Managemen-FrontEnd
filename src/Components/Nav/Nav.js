@@ -66,8 +66,7 @@ function Nav() {
         </ul>
         <div className="copyright">
           <p>
-            <strong>Ứng dụng quản lý tài chính</strong> © 2024 All Rights
-            Reserved
+            <strong>{t("titleTabBar")}</strong> {t("minides")}
           </p>
           <p className="fs-12">
             Made with <span className="heart"/> by HN x ĐN

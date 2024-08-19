@@ -12,7 +12,6 @@ const appColors = [
   '#5bcfc5',
 ]
 class Helper {
-  static exchangeRates;
   static customStylesSelect = {
     control: (provided) => ({
       ...provided,
@@ -143,23 +142,7 @@ class Helper {
     });
   }
 
-  static async vcbExchangeRates() {
-    if (!Helper.exchangeRates) {
-      const response = await fetch('https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=10');
-      const xmlText = await response.text();
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-      const exrateList = Array.from(xmlDoc.getElementsByTagName('Exrate')).map((exrate) => ({
-        currencyCode: exrate.getAttribute('CurrencyCode'),
-        currencyName: exrate.getAttribute('CurrencyName'),
-        buy: exrate.getAttribute('Buy'),
-        transfer: exrate.getAttribute('Transfer'),
-        sell: exrate.getAttribute('Sell'),
-      }));
-      Helper.exchangeRates = exrateList;
-    }
-    return Helper.exchangeRates;
-  }
+
 
   static getColorByIndex(index) {
     return appColors[index];
@@ -186,6 +169,7 @@ class Helper {
         </div>
     );
   };
+
 
   static customSingleValueSelect = (props) => {
     const { data } = props;

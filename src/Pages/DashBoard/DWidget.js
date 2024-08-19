@@ -1,15 +1,19 @@
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 import Helper from "../../utils/helpers";
-import WalletApi from "../../Apis/WalletApi";
 import TransactionApi from "../../Apis/TransactionApi";
 import moment from "moment";
 import {FormattedNumber} from "react-intl";
+import useCurrencyConverter from "../../effect/useCurrencyConverter";
+import {useSelector} from "react-redux";
 
 function DWidget() {
   const { t } = useTranslation();
   const [transactions, setTransactions] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { convertCurrency } = useCurrencyConverter();
+  const uCurrency = useSelector((state) => state.auth.user.setting.currency);
+
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -33,7 +37,7 @@ function DWidget() {
 
   const sumAmount = (categoryType) => {
     return transactions.filter(transaction => transaction.categoryType === categoryType)
-        .reduce((sum, transaction) => sum + transaction.amount, 0);
+        .reduce((sum, transaction) => sum + convertCurrency(transaction.amount, transaction.walletCurrency), 0);
   }
 
   return (
@@ -65,7 +69,7 @@ function DWidget() {
                 <h2 className="fs-34 mb-0 me-3">
                   {
                     loading ? "-" :
-                    <FormattedNumber value={sumAmount(1)} style="currency" currency={"VND"}/>
+                    <FormattedNumber value={sumAmount(1)} style="currency" currency={uCurrency}/>
                   }
 
 
@@ -86,7 +90,7 @@ function DWidget() {
                 <h2 className="fs-34 mb-0 me-3">
                   {
                     loading ? "-" :
-                        <FormattedNumber value={sumAmount(0)} style="currency" currency={"VND"}/>
+                        <FormattedNumber value={sumAmount(0)} style="currency" currency={uCurrency}/>
                   }
                 </h2>
                 <span className="badge badge-danger">-1.5%</span>
