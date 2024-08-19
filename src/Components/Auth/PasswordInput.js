@@ -34,7 +34,7 @@ const PasswordInput = ({ formik, fieldName, label, value, onChange, placeholder 
         <FontAwesomeIcon
           icon={showPassword ? faEyeSlash : faEye}
           className="position-absolute eye-icon"
-          style={{ top: '50%', right: '10px', cursor: 'pointer', transform: 'translateY(-50%)' }}
+          style={{ top: '21px', right: '10px', cursor: 'pointer' }}
           onClick={handleTogglePassword}
         />
         {formik && (

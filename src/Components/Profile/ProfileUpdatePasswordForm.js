@@ -23,7 +23,7 @@ const PasswordInput = ({ formik, fieldName, label }) => {
         <FontAwesomeIcon
           icon={showPassword ? faEyeSlash : faEye}
           className="position-absolute"
-          style={{ top: '50%', right: '10px', cursor: 'pointer', transform: 'translateY(-50%)' }}
+          style={{ top: '21px', right: '10px', cursor: 'pointer' }}
           onClick={handleTogglePassword}
         />
         <Form.Control.Feedback type="invalid">
