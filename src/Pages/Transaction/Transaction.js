@@ -158,7 +158,7 @@ function Transaction() {
                             locale: {
                                 format: 'DD/MM/YYYY',
                             },
-                            style
+
                         }}
                         onApply={handleApplyDate}
                     >
