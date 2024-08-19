@@ -58,7 +58,16 @@ const resources = {
       "email": "Email",
       "phoneNumber": "Số điện thoại",
       "dob": "Ngày sinh",
-      "freeAccount": "Tài khoản miễn phí nâng cấp ngay!"
+      "freeAccount": "Tài khoản miễn phí nâng cấp ngay!",
+      "titleTabBar": "Ứng dụng quản lý tài chính",
+      "minides":"© 2024 All Rights Reserved",
+      "foodDrink":"Ăn uống",
+      "Restaurant":"Nhà hàng",
+      "Installment":"Trả góp",
+      "Property":"Tài sản",
+      "More":"Xem thêm",
+      "addWallet":"Tạo ví mới",
+      "title": " Tiền không phải là tất cả, nhưng nó là một phần quan trọng trong cuộc sống của chúng ta."
     }
   },
   kr: {

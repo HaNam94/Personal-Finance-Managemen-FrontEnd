@@ -4,15 +4,18 @@ import Skeleton from "react-loading-skeleton";
 import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";
 import {useSelector} from "react-redux";
+import {useTranslation} from "react-i18next";
+
 
 function Wallet() {
+  const { t } = useTranslation();
   const wallets = useSelector((state) => state.wallet.wallets);
   const status = useSelector((state) => state.wallet.status);
   return (
     <div>
       <div className="text-end">
         <Link to={'/wallets/new'} className="btn btn-primary btn-sm">
-          <span className="me-2">Tạo ví mới</span>
+          <span className="me-2">{t("addWallet")}</span>
           <i className="fa-solid fa-plus"></i>
         </Link>
       </div>
