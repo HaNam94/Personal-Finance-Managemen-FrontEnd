@@ -13,6 +13,7 @@ import SharedUserList from '../../Components/Wallet/SharedUserList';
 import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";
 import {fetchWallets} from "../../Redux/wallet/walletSlice";
+import {useTranslation} from "react-i18next";
 
 const validationSchema = Yup.object({
   amount: Yup.number().min(0, 'Số tiền hiện tại phải lớn hơn 0'),
@@ -23,6 +24,7 @@ const validationSchema = Yup.object({
 });
 
 function WalletShow() {
+  const { t } = useTranslation();
   const user = useSelector((state) => state.auth.user);
   const { walletId } = useParams();
   const navigate = useNavigate();
@@ -139,7 +141,7 @@ function WalletShow() {
         <div className="card mb-4">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between mb-4">
-              <h5>Danh sách shared của ví</h5>
+              <h5>{t("listUserShareWallet")}</h5>
               <ShareWalletForms walletId={walletId} handleSetNewShare={setSharedUsers}/>
             </div>
             {sharedUsers.length > 0 ? (

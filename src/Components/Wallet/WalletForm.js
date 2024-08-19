@@ -16,7 +16,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
       <div className="row">
         <div className="col-6">
           <div className="mb-3">
-            <label>Tên ví</label>
+            <label>{t("nameWallet")}</label>
             <input
               className="form-control"
               id="walletName"
@@ -30,7 +30,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
               <div className="text-danger">{formik.errors.walletName}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Tiền hiện có</label>
+            <label>{t("moneyHave")}</label>
             <input
               className="form-control"
               id="amount"
@@ -44,7 +44,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
               <div className="text-danger">{formik.errors.amount}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Loại tiền tệ</label>
+            <label>{t("typeMoney")}</label>
             <select
               name="currency"
               id="currency"
@@ -53,14 +53,14 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
               className="form-select"
               disabled={isReadOnly || isUpdate}
             >
-              <option value="">Chọn một loại tiền tệ</option>
+              <option value="">{t("chooseMoneyType")}</option>
               {currencyOptions}
             </select>
             {formik.touched.currency && formik.errors.currency ?
               <div className="text-danger">{formik.errors.currency}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Mô tả ví</label>
+            <label>{t("aboutWallet")}</label>
             <input
               className="form-control"
               id="walletDescription"
@@ -110,8 +110,8 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
         </div>
 
         <div>
-          <Link to={"/wallets"} className="btn btn-secondary btn-sm">Hủy</Link>
-          <button type="submit" className="btn btn-primary btn-sm ms-2" disabled={isReadOnly}>{isUpdate ? "Cập Nhật" : "Tạo mới"}</button>
+          <Link to={"/wallets"} className="btn btn-secondary btn-sm">{t("cancel")}</Link>
+          <button type="submit" className="btn btn-primary btn-sm ms-2" disabled={isReadOnly}>{isUpdate ? t("update") : t("newWallet") }</button>
         </div>
       </div>
     </form>
