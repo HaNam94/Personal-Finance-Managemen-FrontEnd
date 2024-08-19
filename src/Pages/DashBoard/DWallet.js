@@ -7,20 +7,22 @@ import {FormattedNumber} from "react-intl";
 import Skeleton from "react-loading-skeleton";
 import {useSelector} from "react-redux";
 import useCurrencyConverter from "../../effect/useCurrencyConverter";
+import {useState} from "react";
 
 function DWallet() {
   const wallets = useSelector((state) => state.wallet.wallets);
   const { t } = useTranslation();
-<<<<<<< HEAD
+
 
 
   const [exchangeRates, setExchangeRates] = useState(null);
   const [loading, setLoading] = useState(true);
-=======
+
+
   const { convertCurrency } = useCurrencyConverter();
   const status = useSelector((state) => state.exchangeRates.status);
   const user = useSelector((state) => state.auth.user);
->>>>>>> ac15e083e49ba6f121b68c53565a72167fa92fbf
+
   const convertedAmountObj = {};
 
 
