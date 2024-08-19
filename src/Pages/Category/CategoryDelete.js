@@ -2,10 +2,11 @@ import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import Helper from "../../utils/helpers";
 import CategoryApi from "../../Apis/CategoryApi";
-function CategoryDelete({category, handleReload}) {
-
+import {useDispatch} from "react-redux";
+import {fetchCategories} from "../../Redux/category/categorySlice";
+function CategoryDelete({category}) {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -13,7 +14,7 @@ function CategoryDelete({category, handleReload}) {
     try {
       await CategoryApi.deleteCategory(category.id);
       Helper.toastSuccess('Xóa phân loại thành công!');
-      handleReload();
+      dispatch(fetchCategories());
     } catch (error) {
       Helper.parseError(error)
     }

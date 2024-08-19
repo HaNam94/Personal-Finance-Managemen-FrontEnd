@@ -1,5 +1,4 @@
 import Chart from "react-apexcharts";
-import tinycolor from 'tinycolor2';
 
 function GradientLineChart({data, color}) {
   const series = [

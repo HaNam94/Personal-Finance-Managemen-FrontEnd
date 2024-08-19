@@ -4,7 +4,7 @@ import {FormattedNumber} from "react-intl";
 import WalletAction from "./WalletAction";
 import {useSelector} from "react-redux";
 import Helper from "../../utils/helpers";
-function WalletItem({ wallet, index, reload}) {
+function WalletItem({ wallet, index}) {
   const user = useSelector((state) => state.auth.user);
   return (
     <div className="col-4 position-relative invoice-wrapper">
@@ -28,7 +28,7 @@ function WalletItem({ wallet, index, reload}) {
       </Link>
       {
         wallet.walletRoles.some(role => role.userId === user.id && role.role === "OWNER") &&
-        <WalletAction walletId={wallet.id} reload={reload}/>
+        <WalletAction walletId={wallet.id} />
       }
 
     </div>

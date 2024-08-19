@@ -2,21 +2,24 @@ import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import TransactionApi from "../../Apis/TransactionApi";
 import Helper from "../../utils/helpers";
-import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {fetchWallets} from "../../Redux/wallet/walletSlice";
 
-function TransactionDelete({transactionId, reload}) {
+function TransactionDelete({transactionId}) {
     const [show, setShow] = useState(false);
-    const navigate = useNavigate();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const dispatch = useDispatch();
+
     const handleDeleteTransactionById = async () => {
         try {
             await TransactionApi.deleteTransaction(transactionId)
             handleClose()
             Helper.toastSuccess("Xoá thành công")
-            reload(true);
+            dispatch(fetchWallets());
         } catch (error) {
-            Helper.toastError("Xoá thất bại")
+
+            Helper.parseError(error)
         }
     }
     return (
@@ -26,8 +29,7 @@ function TransactionDelete({transactionId, reload}) {
             </button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
-                    <h3>Bạn có chắc chắn muốn xóa ví này không?</h3>
-                    <p>Tất cả dữ liệu liên quan sẽ bị xóa, không thể khôi phục lại!</p>
+                    <h3>Bạn có chắc chắn muốn xóa giao dịch này không?</h3>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-sm" variant="secondary" onClick={handleClose}>

@@ -1,12 +1,13 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Helper from "../../utils/helpers";
-import WalletApi from "../../Apis/WalletApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import CategoryApi from "../../Apis/CategoryApi";
 import CategoryForm from "./CategoryForm";
+import {useDispatch} from "react-redux";
+import {fetchCategories} from "../../Redux/category/categorySlice";
 
 const validationSchema = Yup.object({
   categoryName: Yup.string().required("Vui lòng nhập tên ph loai!"),
@@ -19,6 +20,8 @@ function CategoryShow() {
   const navigate = useNavigate();
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -51,6 +54,7 @@ function CategoryShow() {
       try {
         await CategoryApi.updateCategory(categoryId, values);
         Helper.toastSuccess('Cập nhật phn loại thành công!');
+        dispatch(fetchCategories())
         navigate("/categories");
       } catch (error) {
         Helper.toastError('Cập nhật phan loại thất bại!');

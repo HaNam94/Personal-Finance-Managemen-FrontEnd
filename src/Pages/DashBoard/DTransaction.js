@@ -1,9 +1,34 @@
 import IncomeSvg from "../../Components/Icon/IncomeSvg";
 import OutComeSvg from "../../Components/Icon/OutComeSvg";
 import {useTranslation} from "react-i18next";
+import {useEffect, useState} from "react";
+import Helper from "../../utils/helpers";
+import TransactionApi from "../../Apis/TransactionApi";
+import Skeleton from "react-loading-skeleton";
+import {FormattedNumber} from "react-intl";
 
 function DTransaction() {
   const { t } = useTranslation();
+  const [transactions, setTransactions] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    if (!loading) return;
+    const fetchTransaction = async () => {
+      await Helper.delay(600)
+      try {
+        const response = await TransactionApi.getAll({});
+        console.log(response);
+        setTransactions(response.data.content);
+      } catch (error) {
+        console.error('Error', error)
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTransaction();
+  }, [loading]);
 
   return (
     <div className="card">
@@ -17,145 +42,52 @@ function DTransaction() {
       </div>
       <div className="card-body p-0">
         <div className="table-responsive">
-          <table className="table table-responsive-md card-table transactions-table">
-            <tbody>
-            <tr>
-              <td>
-                <IncomeSvg/>
-              </td>
-              <td>
-                <h6 className="fs-16 font-w600 mb-0">
-                  Luong
-                </h6>
-                <span className="fs-14">hello hello</span>
-              </td>
-              <td>
-                <h6 className="fs-16 text-black font-w600 mb-0">
-                  08/07/2024
-                </h6>
-                <span className="fs-14">05:34:45 AM</span>
-              </td>
-              <td>
-                <span className="fs-16 text-black font-w600">
-                  +10.000 đ
-                </span>
-              </td>
-              <td>
-                <span className="text-black fs-16 font-w500 text-end d-block">
-                  Tk TPbank
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <OutComeSvg/>
-              </td>
-              <td>
-                <h6 className="fs-16 font-w600 mb-0">
-                  Mua hàng
-                </h6>
-                <span className="fs-14">hello hello</span>
-              </td>
-              <td>
-                <h6 className="fs-16 text-black font-w600 mb-0">
-                  07/07/2024
-                </h6>
-                <span className="fs-14">05:34:45 AM</span>
-              </td>
-              <td>
-                <span className="fs-16 text-black font-w600">
-                  -10.000 đ
-                </span>
-              </td>
-              <td>
-                <span className="text-black fs-16 font-w500 text-end d-block">
-                  Ví tiền mặt
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <IncomeSvg/>
-              </td>
-              <td>
-                <h6 className="fs-16 font-w600 mb-0">
-                  Mua hàng
-                </h6>
-                <span className="fs-14">hello hello</span>
-              </td>
-              <td>
-                <h6 className="fs-16 text-black font-w600 mb-0">
-                  07/07/2024
-                </h6>
-                <span className="fs-14">05:34:45 AM</span>
-              </td>
-              <td>
-                <span className="fs-16 text-black font-w600">
-                  +10.000 đ
-                </span>
-              </td>
-              <td>
-                <span className="text-black fs-16 font-w500 text-end d-block">
-                  Ví tiền mặt
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <OutComeSvg />
-              </td>
-              <td>
-                <h6 className="fs-16 font-w600 mb-0">
-                  Mua hàng
-                </h6>
-                <span className="fs-14">hello hello</span>
-              </td>
-              <td>
-                <h6 className="fs-16 text-black font-w600 mb-0">
-                  07/07/2024
-                </h6>
-                <span className="fs-14">05:34:45 AM</span>
-              </td>
-              <td>
-                <span className="fs-16 text-black font-w600">
-                  +10.000 đ
-                </span>
-              </td>
-              <td>
-                <span className="text-black fs-16 font-w500 text-end d-block">
-                  Ví tiền mặt
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <IncomeSvg/>
-              </td>
-              <td>
-                <h6 className="fs-16 font-w600 mb-0">
-                  Mua hàng
-                </h6>
-                <span className="fs-14">hello hello</span>
-              </td>
-              <td>
-                <h6 className="fs-16 text-black font-w600 mb-0">
-                  07/07/2024
-                </h6>
-                <span className="fs-14">05:34:45 AM</span>
-              </td>
-              <td>
-                <span className="fs-16 text-black font-w600">
-                  +10.000 đ
-                </span>
-              </td>
-              <td>
-                <span className="text-black fs-16 font-w500 text-end d-block">
-                  Ví tiền mặt
-                </span>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+          {
+            loading ?
+                <Skeleton count={1} height={50}/> :
+                <table className="table table-responsive-md card-table transactions-table">
+                  <tbody>
+                  {
+                    transactions.slice(0, 5).map((transaction, index) => (
+                        <tr>
+                          <td>
+                            {
+                              transaction.categoryType === 1 ?
+                                  <IncomeSvg /> : <OutComeSvg />
+                            }
+                          </td>
+                          <td>
+                            <h6 className="fs-16 font-w600 mb-0">
+                              {transaction.categoryName}
+                            </h6>
+                            <span className="fs-14">{transaction.note}</span>
+                          </td>
+                          <td>
+                            <h6 className="fs-16 text-black font-w600 mb-0">
+                              {transaction.note}
+                            </h6>
+                            <span className="fs-14">{
+                              transaction.datetime
+                            }</span>
+                          </td>
+                          <td>
+                            <span className="fs-16 text-black font-w600">
+                              <FormattedNumber value={transaction.amount} style="currency" currency={"VND"}/>
+                            </span>
+                          </td>
+                          <td>
+                            <span className="text-black fs-16 font-w500 text-end d-block">
+                              {transaction.walletName}
+                            </span>
+                          </td>
+                        </tr>
+                    ))
+                  }
+                  </tbody>
+                </table>
+          }
+
+
         </div>
       </div>
     </div>

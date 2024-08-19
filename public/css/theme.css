@@ -17704,7 +17704,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   border: 0.0625rem solid #cccccc;
   padding: 0.3125rem 1.25rem;
   color: #6e6e6e;
-  height: 3.5rem;
+  height: 54px;
   border-radius: 0.5rem; }
   @media only screen and (max-width: 1400px) {
     .form-control {

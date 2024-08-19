@@ -39,6 +39,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.status = 'failed';
+        localStorage.removeItem('token');
       });
   }
 });

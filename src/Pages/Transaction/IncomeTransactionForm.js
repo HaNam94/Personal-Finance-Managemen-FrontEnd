@@ -5,68 +5,25 @@ import CategoryApi from "../../Apis/CategoryApi";
 import WalletApi from "../../Apis/WalletApi";
 import {useSelector} from "react-redux";
 import Helper from "../../utils/helpers";
+import moment from "moment";
 
 
-// Custom option component to include images
-const CustomOption = (props) => {
-    const {innerRef, innerProps, data} = props;
-    return (
-        <div ref={innerRef} {...innerProps}
-             style={{display: 'flex', alignItems: 'center', padding: '5px', cursor: 'pointer'}}>
-            <img
-                src={`/images/icons/${data.icon}.png`}
-                style={{width: '40px', height: '40px', marginRight: '10px', borderRadius: '50%'}}
-            />
-            {data.categoryName || data.walletName}
-        </div>
-    );
-};
-
-const customStyles = {
-    control: (provided) => ({
-        ...provided,
-        height: '56px',  // Set the desired height
-        minHeight: '56px',  // Ensure the height is not less than this value
-    }),
-    valueContainer: (provided) => ({
-        ...provided,
-        height: '56px',  // Match the height of the control
-        display: 'flex',
-        alignItems: 'center',
-    }),
-};
 
 function IncomeTransactionForm({formik,closeModal}) {
-  const selectedWalletId = useSelector((state) => state.wallet.selectedWalletId);
-  const [selectedOptionCategory, setSelectedOptionCategory] = useState(null);
-  const [selectedOptionWallet, setSelectedOptionWallet] = useState(null);
-    const [categories, setCategories] = useState([]);
-    const [wallets, setWallets] = useState([]);
-
-    const getAllCategoryByUserId = async () => {
-        const response = await CategoryApi.getAll();
-        const newCategories = response.data.filter((e) => e.categoryType == 1);
-        setCategories(newCategories);
-    }
-
-    const getAllWalletByUserId = async () => {
-      const response = await WalletApi.getAll();
-      setWallets(response.data);
-
-      if(selectedWalletId) {
-        const defaultWallet = response.data.find(wallet => wallet.id === selectedWalletId);
-        setSelectedOptionWallet(defaultWallet);
-        formik.setFieldValue('walletId', defaultWallet ? defaultWallet.id : '');
-      }
-
-    }
-
+    const selectedWalletId = useSelector((state) => state.wallet.selectedWalletId);
+    const [selectedOptionCategory, setSelectedOptionCategory] = useState(null);
+    const [selectedOptionWallet, setSelectedOptionWallet] = useState(null);
+    const ownerWallets = useSelector((state) => state.wallet.ownerWallets);
+    const incomeCategories = useSelector((state) => state.category.incomeCategories);
 
 
     useEffect(() => {
-        getAllCategoryByUserId();
-        getAllWalletByUserId();
-    }, []);
+        if (selectedWalletId) {
+            const defaultWallet = ownerWallets.find(wallet => wallet.id === selectedWalletId);
+            setSelectedOptionWallet(defaultWallet);
+            formik.setFieldValue('walletId', defaultWallet ? defaultWallet.id : '');
+        }
+    }, [])
 
     const handleSelectCategoryChange = (selectedOption) => {
       setSelectedOptionCategory(selectedOption);
@@ -117,7 +74,9 @@ function IncomeTransactionForm({formik,closeModal}) {
                                 type="date"
                                 name="datetime"
                                 onChange={formik.handleChange}
-                                value={formik.values.datetime}/>
+                                value={formik.values.datetime}
+                                max={moment().format("YYYY-MM-DD")}
+                            />
                             {formik.touched.datetime && formik.errors.datetime ?
                                 <div className="text-danger">{formik.errors.datetime}</div> : null}
                         </div>
@@ -133,9 +92,9 @@ function IncomeTransactionForm({formik,closeModal}) {
                                 value={selectedOptionCategory}
                                 getOptionValue={(option) => option.id}
                                 getOptionLabel={(option) => option.categoryName}
-                                options={categories}
-                                components={{Option: CustomOption}}
-                                styles={customStyles}
+                                options={incomeCategories}
+                                components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
+                                styles={Helper.customStylesSelect}
                             />
                             {formik.touched.categoryId && formik.errors.categoryId ?
                                 <div className="text-danger">{formik.errors.categoryId}</div> : null}
@@ -148,9 +107,9 @@ function IncomeTransactionForm({formik,closeModal}) {
                               value={selectedOptionWallet}
                               getOptionValue={(option) => option.id}
                               getOptionLabel={(option) => option.walletName}
-                              options={wallets}
-                              components={{ Option: CustomOption }}
-                              styles={customStyles}
+                              options={ownerWallets}
+                              components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
+                              styles={Helper.customStylesSelect}
                             />
                             {formik.touched.walletId && formik.errors.walletId ?
                                 <div className="text-danger">{formik.errors.walletId}</div> : null}

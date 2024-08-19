@@ -1,7 +1,7 @@
 import {useState} from "react";
 import TransactionFormik from "./TransactionFormik";
 
-function TransactionActionContent({closeModal, actionType = "income", reload}) {
+function TransactionActionContent({closeModal, actionType = "income"}) {
   const [transactionType, setTransactionType] = useState(actionType);
 
   const handleTransactionTypeChange = (type) => {
@@ -42,7 +42,7 @@ function TransactionActionContent({closeModal, actionType = "income", reload}) {
       <div className="card mt-4">
         <div className="card-body">
           {
-            <TransactionFormik transactionType={transactionType} closeModal={closeModal} reload={reload}/>
+            <TransactionFormik transactionType={transactionType} closeModal={closeModal}/>
           }
         </div>
       </div>

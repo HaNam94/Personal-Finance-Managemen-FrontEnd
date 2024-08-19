@@ -4,6 +4,8 @@ import Helper from "../../utils/helpers";
 import {useLocation, useNavigate} from "react-router-dom";
 import CategoryForm from "./CategoryForm";
 import CategoryApi from "../../Apis/CategoryApi";
+import {fetchCategories} from "../../Redux/category/categorySlice";
+import {useDispatch} from "react-redux";
 
 const validationSchema = Yup.object({
   categoryName: Yup.string().required("Vui lòng nhập tên ph loai!"),
@@ -17,7 +19,7 @@ function CategoryNew() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const parentId = searchParams.get('parentId');
-
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -32,6 +34,7 @@ function CategoryNew() {
       try {
         await CategoryApi.createCategory(values);
         Helper.toastSuccess('Tạo phn loại thành công!');
+        dispatch(fetchCategories());
         navigate("/categories");
       } catch (error) {
         Helper.toastError('Tạo phn loại thất bại!');

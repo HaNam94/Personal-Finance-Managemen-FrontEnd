@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-function WalletForm({formik, submitText = "Tạo mới", deleteBtn = <></>, isReadOnly = false}) {
+function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = false}) {
 
   const currencyOptions = ["VND", "USD"].map(el => {
     return (
@@ -50,7 +50,7 @@ function WalletForm({formik, submitText = "Tạo mới", deleteBtn = <></>, isRe
               onChange={formik.handleChange}
               value={formik.values.currency}
               className="form-select"
-              disabled={isReadOnly}
+              disabled={isReadOnly || isUpdate}
             >
               <option value="">Chọn một loại tiền tệ</option>
               {currencyOptions}
@@ -110,7 +110,7 @@ function WalletForm({formik, submitText = "Tạo mới", deleteBtn = <></>, isRe
 
         <div>
           <Link to={"/wallets"} className="btn btn-secondary btn-sm">Hủy</Link>
-          <button type="submit" className="btn btn-primary btn-sm ms-2" disabled={isReadOnly}>{submitText}</button>
+          <button type="submit" className="btn btn-primary btn-sm ms-2" disabled={isReadOnly}>{isUpdate ? "Cập Nhật" : "Tạo mới"}</button>
         </div>
       </div>
     </form>

@@ -38,7 +38,7 @@ const ProfileAvatar = ({user}) => {
           ) : (
             <div>
 
-              <img src={avatar}/>
+              <img src={avatar} alt={"avatar"}/>
               <input type="file" onChange={handleFileChange} className="d-none"/>
               <div className="overlay-upload-icon">
                 <i className="fa-solid fa-upload"></i>

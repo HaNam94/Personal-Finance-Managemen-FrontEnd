@@ -1,5 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
-import "react-datepicker/dist/react-datepicker.css";
+import 'bootstrap-daterangepicker/daterangepicker.css';
+import 'bootstrap-daterangepicker';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainLayout from "./Layout/MainLayout";
 import Dashboard from "./Pages/DashBoard/Dashboard";
@@ -28,6 +29,7 @@ import './translate/i18n';
 import CategoryShow from "./Pages/Category/CategoryShow";
 import {IntlProvider} from "react-intl";
 import {useTranslation} from "react-i18next";
+import Report from "./Pages/Report/Report";
 
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
                 <Route path="/transactions" element={<Transaction />} />
                 <Route path="/budgets" element={<Budget />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/reports" element={<Report />} />
                 <Route path="/categories" element={<Category />} />
                 <Route path="/categories/new" element={<CategoryNew />} />
                 <Route path="/categories/:categoryId" element={<CategoryShow />} />

@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import {logout} from "../../Redux/auth/authSlice";
 import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-import Lottie, {LottiePlayer} from "lottie-react";
+import Lottie from "lottie-react";
 import logoutLottieData from "../../LottieData/logout.json";
 
 function Logout() {
@@ -22,7 +22,7 @@ function Logout() {
 
   return (
     <>
-      <a href="#" onClick={handleShow} className="m ai-icon">
+      <a href="/" onClick={handleShow} className="m ai-icon">
         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" className="text-danger" width="28"
              height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round">

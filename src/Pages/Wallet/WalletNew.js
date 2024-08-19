@@ -4,9 +4,11 @@ import Helper from "../../utils/helpers";
 import WalletForm from "../../Components/Wallet/WalletForm";
 import WalletApi from "../../Apis/WalletApi";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {fetchWallets} from "../../Redux/wallet/walletSlice";
 
 const validationSchema = Yup.object({
-  amount: Yup.number(),
+  amount: Yup.number().min(0, "Tiền hiện có phải lớn hơn 0!"),
   walletName: Yup.string().required("Vui lòng nhập tên ví!"),
   icon: Yup.string().required("Vui lòng chọn icon!"),
   currency: Yup.string().required("Vui lòng chọn loại tiền tệ!"),
@@ -15,6 +17,7 @@ const validationSchema = Yup.object({
 
 function WalletNew() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
 
   const formik = useFormik({
@@ -30,6 +33,7 @@ function WalletNew() {
       try {
         await WalletApi.createWallet(values);
         Helper.toastSuccess('Tạo ví thành công!');
+        dispatch(fetchWallets());
         navigate("/wallets");
       } catch (error) {
         Helper.toastError('Tạo ví thất bại!');

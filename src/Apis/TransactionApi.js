@@ -22,5 +22,8 @@ class TransactionApi{
     static async getByCategoryId(categoryId) {
       return axiosInstance.get(url + '/search?categoryId=' + categoryId);
     }
+    static async search(data) {
+        return axiosInstance.get(url + '/search', {params: data});
+    }
 }
 export default TransactionApi;

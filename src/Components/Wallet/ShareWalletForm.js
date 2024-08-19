@@ -4,16 +4,17 @@ import WalletActionContent from "./WalletActionContent";
 
 function ShareWalletForms({ walletId, handleSetNewShare }) {
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true); 
+  const handleShow = () => setShow(true);
 
   return (
     <div className="main-action">
       <Button
         className="btn-sm ms-2"
         variant="primary"
-        onClick={handleShow} 
+        onClick={handleShow}
       >
         <span className="mx-2">Thêm người được chia sẻ ví</span>
         <i className="fa-solid fa-plus"></i>
@@ -24,13 +25,24 @@ function ShareWalletForms({ walletId, handleSetNewShare }) {
         </Modal.Header>
         <Modal.Body>
           {walletId !== null && walletId !== undefined && (
-            <WalletActionContent walletId={walletId} closeModal={handleClose} handleSetNewShare={handleSetNewShare}/>
+            <WalletActionContent
+              walletId={walletId}
+              closeModal={handleClose}
+              handleSetNewShare={handleSetNewShare}
+              setIsLoading={setIsLoading} 
+            />
           )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" className="btn-sm" onClick={handleClose}>Đóng</Button>
-          <button type="submit" className="btn btn-primary btn-sm" form={"form-shared-waller"}>
-            Thêm
+          <button type="submit" className="btn btn-primary btn-sm" form={"form-shared-waller"} disabled={isLoading}>
+            {isLoading ? (
+              <div className="spinner-border spinner-border-sm" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              'Thêm'
+            )}
           </button>
         </Modal.Footer>
       </Modal>

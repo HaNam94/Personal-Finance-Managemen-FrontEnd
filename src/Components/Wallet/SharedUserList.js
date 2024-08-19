@@ -11,7 +11,6 @@ function SharedUserList({ sharedUsers, walletId, onUpdateRole, handleUnshare }) 
       return acc;
     }, {})
   );
-
   const handleRoleChange = async (userId, newRole) => {
     setRoles(prevRoles => ({
       ...prevRoles,

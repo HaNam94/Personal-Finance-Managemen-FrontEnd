@@ -1,32 +1,13 @@
 import { Link } from "react-router-dom";
 import WalletItem from "./WalletItem";
-import { useEffect, useState } from "react";
-import WalletApi from "../../Apis/WalletApi";
 import Skeleton from "react-loading-skeleton";
 import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";
+import {useSelector} from "react-redux";
 
 function Wallet() {
-  const [wallets, setWallets] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if(!loading) {
-      return;
-    }
-    const fetchWallets = async () => {
-      try {
-        const response = await WalletApi.getAll();
-        setWallets(response.data);
-      } catch (error) {
-        console.error('Error', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchWallets();
-  }, [loading]);
+  const wallets = useSelector((state) => state.wallet.wallets);
+  const status = useSelector((state) => state.wallet.status);
   return (
     <div>
       <div className="text-end">
@@ -37,19 +18,19 @@ function Wallet() {
       </div>
       <div className="row invoice-card-row mt-4">
         {
-          loading ? (
+            status === "loading" ? (
             <Skeleton count={2} height={200} />
           ) : (
             <>
               {
-                wallets.length == 0 ?
+                wallets.length === 0 ?
                   <div className="w-25 mx-auto pb-5">
                     <Lottie animationData={AniEmpty}
                     /> 
                     </div> :
                   <>
                     {
-                      wallets.map((w, index) => <WalletItem key={w.id} wallet={w} index={index} reload={setLoading}/>)
+                      wallets.map((w, index) => <WalletItem key={w.id} wallet={w} index={index}/>)
                     }
                   </>
 

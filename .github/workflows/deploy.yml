@@ -1,0 +1,44 @@
+name: Deploy React App
+
+on:
+  push:
+    branches:
+      - develop  # or your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the app
+        run: CI=false npm run build
+
+      - name: Deploy to VPS
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          # Set up SSH key
+          echo "$SSH_PRIVATE_KEY" > /tmp/id_rsa
+          chmod 600 /tmp/id_rsa
+          eval "$(ssh-agent -s)"
+          ssh-add /tmp/id_rsa
+
+          # Deploy the app
+          ssh -o StrictHostKeyChecking=no root@14.225.218.31 << 'EOF'
+            cd /var/www/qnsk-app || exit
+            git pull origin develop
+            npm install
+            npm run build
+            sudo systemctl restart nginx
+          EOF

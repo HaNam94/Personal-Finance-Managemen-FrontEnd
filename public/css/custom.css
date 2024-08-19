@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap); /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+
 #main-wrapper {
     background-image: url("../images/bg.png");
     padding: 15px;
@@ -144,4 +146,58 @@
 
 .invoice-wrapper:hover .wallet-item-action {
     opacity: 1;
+}
+
+
+.logo-text {
+    color: #193b62;
+    font-size: 31px;
+    margin-left: 15px;
+    margin-top: 10px;
+    font-family: Montserrat, sans-serif;
+}
+.input-daterange input{
+    min-width: 215px;
+    text-align: center;
+    padding: 6px 6px 6px 22px;
+    height: 54px;
+    color: #222260!important;
+    background-color: #fff!important;
+    border-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+.input-daterange {
+    position: relative;
+}
+.input-daterange i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 15px;
+}
+
+.select-filter {
+    min-width: 215px;
+    max: 215px;
+}
+.select-filter >div >div {
+    border: none;
+}
+.select-filter >div >div >div >span {
+    display: none;
+}
+
+#no-support {
+    display: none;
+}
+@media screen and (max-width: 1400px) {
+    #root {
+        display: none!important;
+    }
+
+    #no-support {
+        display: block!important;
+    }
+    
 }

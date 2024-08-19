@@ -7,31 +7,31 @@ import Helper from "../../utils/helpers";
 import WalletApi from "../../Apis/WalletApi";
 import {FormattedNumber} from "react-intl";
 import Skeleton from "react-loading-skeleton";
+import {useSelector} from "react-redux";
+import TransactionApi from "../../Apis/TransactionApi";
 
 function DWallet() {
+  const wallets = useSelector((state) => state.wallet.wallets);
   const { t } = useTranslation();
-  const [wallets, setWallets] = useState([]);
+
+
   const [exchangeRates, setExchangeRates] = useState(null);
   const [loading, setLoading] = useState(true);
+  const convertedAmountObj = {};
 
   useEffect(() => {
-    const fetchWallets = async () => {
+    const fetchExchangeRates = async () => {
       await Helper.delay(600)
       try {
-        let [walletRes, exchangeRates] = await Promise.all([
-          WalletApi.getAll(),
-          Helper.vcbExchangeRates()
-        ]);
+        const exchangeRates = await Helper.vcbExchangeRates();
         setExchangeRates(exchangeRates);
-        setWallets(walletRes.data);
       } catch (error) {
         Helper.parseError(error);
       } finally {
         setLoading(false);
       }
     };
-    fetchWallets();
-
+    fetchExchangeRates();
   }, []);
 
   const totalBalanceByCurrency = (currencyCode) => {
@@ -47,7 +47,7 @@ function DWallet() {
             convertedAmount = wallet.amount / Helper.parseFloat(rate.transfer);
           }
         }
-        wallet.convertedAmount = convertedAmount;
+        convertedAmountObj[wallet.id] = convertedAmount;
         total += convertedAmount;
       });
     }
@@ -131,7 +131,7 @@ function DWallet() {
                 {
                   !loading &&
                   <PolarBasic options={chartOptions}
-                    series={wallets.map((wallet) => wallet.convertedAmount)}
+                    series={wallets.map((wallet) => convertedAmountObj[wallet.id])}
                   ></PolarBasic>
                 }
               </div>

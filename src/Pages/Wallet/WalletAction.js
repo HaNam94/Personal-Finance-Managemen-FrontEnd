@@ -4,7 +4,7 @@ import TransactionActionContent from "../Transaction/TransactionActionContent";
 import {useDispatch} from "react-redux";
 import {setSelectedWalletId} from "../../Redux/wallet/walletSlice";
 
-function WalletAction({walletId, reload}) {
+function WalletAction({walletId}) {
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
@@ -29,7 +29,7 @@ function WalletAction({walletId, reload}) {
       </Button>
       <Modal show={show} onHide={handleClose} size="lg" className="modal-box-style">
         <Modal.Body>
-          <TransactionActionContent closeModal={handleClose} actionType={actionType} selectedWalletId={walletId} reload={reload}/>
+          <TransactionActionContent closeModal={handleClose} actionType={actionType} selectedWalletId={walletId} />
         </Modal.Body>
       </Modal>
     </div>

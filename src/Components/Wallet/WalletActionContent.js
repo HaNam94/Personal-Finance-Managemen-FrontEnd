@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import Helper from "../../utils/helpers";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import WalletApi from "../../Apis/WalletApi";
-function WalletActionContent({ walletId, closeModal, handleSetNewShare }) {
+
+function WalletActionContent({ walletId, closeModal, handleSetNewShare, setIsLoading }) {
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('READ_ONLY'); // Mặc định là READ_ONLY
   const user = useSelector((state) => state.auth.user);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true); 
     try {
-      const response = await WalletApi.shareWallet(walletId,{
-          email: email,
-          role: role
-        }
-      );
+      const response = await WalletApi.shareWallet(walletId, {
+        email: email,
+        role: role
+      });
       handleSetNewShare(response.data.walletRoles.filter(role => role.userId !== user.id));
 
       Helper.toastSuccess('Đã chia sẻ ví thành công!');
@@ -36,6 +35,8 @@ function WalletActionContent({ walletId, closeModal, handleSetNewShare }) {
          Helper.toastError('Đã xảy ra lỗi khi chia sẻ ví!');
       }
       console.error('Error sharing wallet:', error.response ? error.response.data : error.message);
+    } finally {
+      setIsLoading(false); 
     }
   };
 
@@ -69,7 +70,6 @@ function WalletActionContent({ walletId, closeModal, handleSetNewShare }) {
         </select>
       </div>
     </form>
-
   );
 }
 
