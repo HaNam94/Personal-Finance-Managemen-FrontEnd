@@ -84,6 +84,10 @@ const resources = {
       "shareWallet":"Chia sẻ ví",
       "typeMailUser":"Nhập mail của người dùng",
       "add":"Thêm",
+      "iconWallet":"icon ví",
+      "all":"Tất cả",
+      "revenue":"Thu",
+      "expenditure":"Chi",
       "title": " Tiền không phải là tất cả, nhưng nó là một phần quan trọng trong cuộc sống của chúng ta."
     }
   },

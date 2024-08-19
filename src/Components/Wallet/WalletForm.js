@@ -77,7 +77,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
         <div className="col-6">
           <div className="mb-3">
             <div className="mb-3">
-              <label>Icon ví</label>
+              <label>{t("iconWallet")}</label>
               <div className="d-flex flex-wrap box-icon">
                 {Array.from({length: 142}, (_, i) => `icon_${i}`).map((option) => (
                   <div key={option} className="icon-item">
