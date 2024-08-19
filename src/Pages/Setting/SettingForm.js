@@ -13,10 +13,27 @@ function SettingForm({formik}) {
                             value={formik.values.currency}
                             className="form-select"
                         >
-                            <option value="USD">USD</option>
-                            <option value="VND">VND</option>
-                            <option value="KRW">KRW</option>
-                            <option value="RUB">RUB</option>
+                            <option value="AUD">AUD - AUSTRALIAN DOLLAR</option>
+<option value="CAD">CAD - CANADIAN DOLLAR</option>
+<option value="CHF">CHF - SWISS FRANC</option>
+<option value="CNY">CNY - YUAN RENMINBI</option>
+<option value="DKK">DKK - DANISH KRONE</option>
+<option value="EUR">EUR - EURO</option>
+<option value="GBP">GBP - POUND STERLING</option>
+<option value="HKD">HKD - HONGKONG DOLLAR</option>
+<option value="INR">INR - INDIAN RUPEE</option>
+<option value="JPY">JPY - YEN</option>
+<option value="KRW">KRW - KOREAN WON</option>
+<option value="KWD">KWD - KUWAITI DINAR</option>
+<option value="MYR">MYR - MALAYSIAN RINGGIT</option>
+<option value="NOK">NOK - NORWEGIAN KRONER</option>
+<option value="RUB">RUB - RUSSIAN RUBLE</option>
+<option value="SAR">SAR - SAUDI RIAL</option>
+<option value="SEK">SEK - SWEDISH KRONA</option>
+<option value="SGD">SGD - SINGAPORE DOLLAR</option>
+<option value="THB">THB - THAILAND BAHT</option>
+<option value="USD">USD - US DOLLAR</option>
+<option value="VND">VND - VIETNAMESE DONG</option>
                         </select>
                     </div>
                     <div className="mb-3">
