@@ -96,7 +96,8 @@ function IncomeTransactionForm({formik,closeModal}) {
                                 components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
                                 styles={Helper.customStylesSelect}
                             />
-
+                            {formik.touched.categoryId && formik.errors.categoryId ?
+                                <div className="text-danger">{formik.errors.categoryId}</div> : null}
                         </div>
                         <div className="mb-3">
                             <label>Ví tiền</label>
@@ -110,6 +111,8 @@ function IncomeTransactionForm({formik,closeModal}) {
                               components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
                               styles={Helper.customStylesSelect}
                             />
+                            {formik.touched.walletId && formik.errors.walletId ?
+                                <div className="text-danger">{formik.errors.walletId}</div> : null}
                         </div>
 
                     </div>

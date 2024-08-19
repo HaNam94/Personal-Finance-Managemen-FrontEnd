@@ -17,8 +17,8 @@ import Select from "react-select";
 function Transaction() {
     const [transactions, setTransactions] = useState(null);
     const [categoryType, setCategoryType] = useState(2);
-    const [category, setCategory] = useState({ id: '', categoryName: 'Phân loại', icon: "icon_000" });
-    const [wallet, setWallet] = useState({ id: '', walletName: 'Ví tiền', icon: "icon_000" });
+    const [category, setCategory] = useState({id: '', categoryName: 'Phân loại', icon: "icon_000"});
+    const [wallet, setWallet] = useState({id: '', walletName: 'Ví tiền', icon: "icon_000"});
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
     const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
@@ -30,35 +30,36 @@ function Transaction() {
 
     useEffect(() => {
         const fetchTransaction = async () => {
-          await Helper.delay(600)
-          try {
-            const response = await TransactionApi.getAll({
-              categoryType,
-                startDate: startDate.format('YYYY-MM-DD'),
-                endDate: endDate.format('YYYY-MM-DD'),
-                categoryId: category?.id,
-                walletId: wallet?.id,
-              page
-            });
-            setTransactions(response.data.content);
-            setTotalPages(response.data.totalPages);
-          } catch (error) {
-            console.error('Error', error)
-          }
+            await Helper.delay(600)
+            try {
+                const response = await TransactionApi.getAll({
+                    categoryType,
+                    startDate: startDate.format('YYYY-MM-DD'),
+                    endDate: endDate.format('YYYY-MM-DD'),
+                    categoryId: category?.id,
+                    walletId: wallet?.id,
+                    page
+                });
+
+                setTransactions(response.data.content);
+                setTotalPages(response.data.totalPages);
+            } catch (error) {
+                console.error('Error', error)
+            }
         };
         setTransactions(null);
         fetchTransaction();
     }, [statusReloadWallet, categoryType, page, startDate, endDate, category, wallet]);
 
     const handleTypeChange = (type) => {
-      setCategoryType(type);
+        setCategoryType(type);
     };
 
-      const handlePageChange = (newPage) => {
+    const handlePageChange = (newPage) => {
         if (newPage >= 0 && newPage < totalPages) {
-          setPage(newPage);
+            setPage(newPage);
         }
-      };
+    };
     const handleCategoryChange = (newCategory) => {
         setCategory(newCategory);
     };
@@ -66,36 +67,39 @@ function Transaction() {
         setWallet(newWallet);
     };
 
-  const renderPagination = () => {
-    const pages = [];
-    for (let i = 0; i < totalPages; i++) {
-      pages.push(
-        <li key={i} className={`page-item ${page === i ? "active" : ""}`}>
-          <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(i)}>
-            {i + 1}
-          </a>
-        </li>
-      );
-    }
+    const renderPagination = () => {
+        const pages = [];
+        for (let i = 0; i < totalPages; i++) {
+            pages.push(
+                <li key={i} className={`page-item ${page === i ? "active" : ""}`}>
+                    <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(i)}>
+                        {i + 1}
+                    </a>
+                </li>
+            );
+        }
 
-    return (
-      <nav>
-        <ul className="pagination pagination-gutter pagination-primary no-bg">
-          <li className="page-item page-indicator">
-            <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(page - 1)} disabled={page === 0}>
-              <i className="fa-solid fa-chevron-left"></i>
-            </a>
-          </li>
-          {pages}
-          <li className="page-item page-indicator">
-            <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(page + 1)} disabled={page === totalPages - 1}>
-              <i className="fa-solid fa-chevron-right"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    );
-  };
+        return (
+            <nav>
+                <ul className="pagination pagination-gutter pagination-primary no-bg">
+                    <li className="page-item page-indicator">
+                        <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(page - 1)}
+                           disabled={page === 0}>
+                            <i className="fa-solid fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    {pages}
+                    <li className="page-item page-indicator">
+                        <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(page + 1)}
+                           disabled={page === totalPages - 1}>
+                            <i className="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        );
+    };
+
 
     const handleApplyDate = (event, picker) => {
         setStartDate(picker.startDate);
@@ -103,136 +107,141 @@ function Transaction() {
     };
 
 
-
     const renderTransactions = () => {
         const transactionsGrouped = Helper.groupBy(transactions, "datetime");
         const sortedTransactions = Helper.sortStringDate(Object.keys(transactionsGrouped));
         return sortedTransactions.map((datetime) => {
-          return (
-            <div key={datetime} className="p-3 bg-white mb-3 rounded-1">
-              <h4 className="mb-3"><span className="badge light badge-secondary">{datetime}</span></h4>
-              {transactionsGrouped[datetime].map((transaction, j) => {
-                console.log(transaction);
-                return (
-                  <TransactionItem key={transaction.id}
-                   transaction={transaction}
-                   deleteBtn={<TransactionDelete transactionId={transaction.id} />}
-                   editBtn={<TransactionEditModal transactionId={transaction.id} />}
-                   />
-                )
-              })}
-            </div>
-          );
+            return (
+                <div key={datetime} className="p-3 bg-white mb-3 rounded-1">
+                    <h4 className="mb-3"><span className="badge light badge-secondary">{datetime}</span></h4>
+                    {transactionsGrouped[datetime].map((transaction, j) => {
+                        console.log(transaction);
+                        return (
+                            <TransactionItem key={transaction.id}
+                                             transaction={transaction}
+                                             deleteBtn={<TransactionDelete transactionId={transaction.id}/>}
+                                             editBtn={<TransactionEditModal transactionId={transaction.id}/>}
+                            />
+                        )
+                    })}
+                </div>
+            );
         })
     }
-  return (
-      <div>
-          <div className="d-flex flex-wrap align-items-center mb-3">
-              <div className="me-auto d-flex">
-                  <div className="card-tabs style-1 mt-3 mt-sm-0 me-3">
-                      <ul className="nav nav-tabs" role="tablist">
-                          <li className="nav-item">
-                              <button className={categoryType === 2 ? "nav-link active" : "nav-link"}
-                                      onClick={() => handleTypeChange(2)}>Tất cả
-                              </button>
-                          </li>
-                          <li className="nav-item">
-                              <button className={categoryType === 1 ? "nav-link active" : "nav-link"}
-                                      onClick={() => handleTypeChange(1)}>Thu
-                              </button>
-                          </li>
-                          <li className="nav-item">
-                              <button className={categoryType === 0 ? "nav-link active" : "nav-link"}
-                                      onClick={() => handleTypeChange(0)}>Chi
-                              </button>
-                          </li>
-                      </ul>
-                  </div>
-                  <DateRangePicker
-                      initialSettings={{
-                          startDate: startDate.toDate(),
-                          endDate: endDate.toDate(),
-                          locale: {
-                              format: 'DD/MM/YYYY',
-                          },
-                      }}
-                      onApply={handleApplyDate}
-                  >
-                      <div className="input-daterange me-3">
-                          <i className="fa-solid fa-calendar-days"></i>
-                          <input
-                              type="text"
-                              className="form-control"
-                              value={`${startDate.format('DD/MM/YYYY')} - ${endDate.format('DD/MM/YYYY')}`}
-                              readOnly
-                          />
-                      </div>
-                  </DateRangePicker>
-                  <div className="select-filter me-3">
-                      <Select
-                          defaultValue={""}
-                          onChange={handleCategoryChange}
-                          value={category}
-                          getOptionValue={(option) => option.id}
-                          getOptionLabel={(option) => option.categoryName}
-                          options={[
-                              {id: '', categoryName: 'Phân loại', icon: "icon_000"},
-                              ...categories,
-                          ]}
-                          components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
-                          styles={Helper.customStylesSelect}
-                      />
-                  </div>
-                  <div className="select-filter me-3">
-                      <Select
-                          defaultValue={""}
-                          onChange={handleWalletChange}
-                          value={wallet}
-                          getOptionValue={(option) => option.id}
-                          getOptionLabel={(option) => option.walletName}
-                          options={[
-                              {id: '', walletName: 'Ví tiền', icon: "icon_000"},
-                              ...wallets,
-                          ]}
-                          components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
-                          styles={Helper.customStylesSelect}
-                      />
-                  </div>
-              </div>
+    return (
+        <div>
+            <div className="d-flex flex-wrap align-items-center mb-3">
+                <div className="me-auto d-flex">
+                    <div className="card-tabs style-1 mt-3 mt-sm-0 me-3">
+                        <ul className="nav nav-tabs" role="tablist">
+                            <li className="nav-item">
+                                <button className={categoryType === 2 ? "nav-link active" : "nav-link"}
+                                        onClick={() => handleTypeChange(2)}>Tất cả
+                                </button>
+                            </li>
+                            <li className="nav-item">
+                                <button className={categoryType === 1 ? "nav-link active" : "nav-link"}
+                                        onClick={() => handleTypeChange(1)}>Thu
+                                </button>
+                            </li>
+                            <li className="nav-item">
+                                <button className={categoryType === 0 ? "nav-link active" : "nav-link"}
+                                        onClick={() => handleTypeChange(0)}>Chi
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <DateRangePicker
+                        initialSettings={{
+                            startDate: startDate.toDate(),
+                            endDate: endDate.toDate(),
+                            locale: {
+                                format: 'DD/MM/YYYY',
+                            },
+                            style
+                        }}
+                        onApply={handleApplyDate}
+                    >
+                        <div className="input-daterange me-3">
+                            <i className="fa-solid fa-calendar-days"></i>
+                            <input
+                                type="text"
+                                className="form-control"
+                                value={`${startDate.format('DD/MM/YYYY')} - ${endDate.format('DD/MM/YYYY')}`}
+                                readOnly
+                            />
+                        </div>
+                    </DateRangePicker>
+                    <div className="select-filter me-3">
+                        <Select
+                            defaultValue={""}
+                            onChange={handleCategoryChange}
+                            value={category}
+                            getOptionValue={(option) => option.id}
+                            getOptionLabel={(option) => option.categoryName}
+                            options={[
+                                {id: '', categoryName: 'Phân loại', icon: "icon_000"},
+                                ...categories,
+                            ]}
+                            components={{
+                                Option: Helper.customOptionSelect,
+                                SingleValue: Helper.customSingleValueSelect
+                            }}
+                            styles={Helper.customStylesSelect}
+                        />
+                    </div>
+                    <div className="select-filter me-3">
+                        <Select
+                            defaultValue={""}
+                            onChange={handleWalletChange}
+                            value={wallet}
+                            getOptionValue={(option) => option.id}
+                            getOptionLabel={(option) => option.walletName}
+                            options={[
+                                {id: '', walletName: 'Ví tiền', icon: "icon_000"},
+                                ...wallets,
+                            ]}
+                            components={{
+                                Option: Helper.customOptionSelect,
+                                SingleValue: Helper.customSingleValueSelect
+                            }}
+                            styles={Helper.customStylesSelect}
+                        />
+                    </div>
+                </div>
 
-              <TransactionActionModal/>
-          </div>
-          <div className="row">
-              <div className="col-12">
-                  {
-                      transactions === null ? (
-                          <Skeleton count={2} height={200}/>
-                      ) : (
-                          <>{
-                              transactions.length === 0 ?
-                                  (<div className="w-25 mx-auto pb-5">
-                                      <Lottie animationData={AniEmpty}
-                                      />
-                                  </div>) : (
-                                      <>
-                                          {
-                                              renderTransactions()
-                                          }
-                                          <div className="d-flex justify-content-center mt-3">
-                                    {renderPagination()}
-                                  </div>
-                                </>)
-                          }
-                          </>
-                      )
-                  }
-              </div>
-            <div className="col-12">
+                <TransactionActionModal/>
+            </div>
+            <div className="row">
+                <div className="col-12">
+                    {
+                        transactions === null ? (
+                            <Skeleton count={2} height={200}/>
+                        ) : (
+                            <>{
+                                transactions.length === 0 ?
+                                    (<div className="w-25 mx-auto pb-5">
+                                        <Lottie animationData={AniEmpty}
+                                        />
+                                    </div>) : (
+                                        <>
+                                            {
+                                                renderTransactions()
+                                            }
+                                            <div className="d-flex justify-content-center mt-3">
+                                                {renderPagination()}
+                                            </div>
+                                        </>)
+                            }
+                            </>
+                        )
+                    }
+                </div>
 
             </div>
-          </div>
-      </div>
-  )
+        </div>)
 }
+
+
 
 export default Transaction;
