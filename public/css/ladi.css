@@ -2249,6 +2249,7 @@ a.qnsk-btn_rounded {
     top: 8.45px;
     left: 6.5px;
     width: 900px;
+    max-width: 90vw;
     overflow: hidden;
     -webkit-border-radius: 19px;
     -moz-border-radius: 19px;
