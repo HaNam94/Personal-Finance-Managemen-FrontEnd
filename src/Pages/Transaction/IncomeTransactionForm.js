@@ -135,10 +135,10 @@ function IncomeTransactionForm({formik,closeModal}) {
                                 getOptionLabel={(option) => option.categoryName}
                                 options={categories}
                                 components={{Option: CustomOption}}
-
                                 styles={customStyles}
                             />
-
+                            {formik.touched.categoryId && formik.errors.categoryId ?
+                                <div className="text-danger">{formik.errors.categoryId}</div> : null}
                         </div>
                         <div className="mb-3">
                             <label>Ví tiền</label>
@@ -152,6 +152,8 @@ function IncomeTransactionForm({formik,closeModal}) {
                               components={{ Option: CustomOption }}
                               styles={customStyles}
                             />
+                            {formik.touched.walletId && formik.errors.walletId ?
+                                <div className="text-danger">{formik.errors.walletId}</div> : null}
                         </div>
 
                     </div>

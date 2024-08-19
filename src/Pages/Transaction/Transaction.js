@@ -26,7 +26,7 @@ function Transaction() {
               categoryType,
               page
             });
-              console.log(response)
+
             setTransactions(response.data.content);
             setTotalPages(response.data.totalPages);
           } catch (error) {
