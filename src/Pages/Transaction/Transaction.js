@@ -157,8 +157,7 @@ function Transaction() {
                             endDate: endDate.toDate(),
                             locale: {
                                 format: 'DD/MM/YYYY',
-                            },
-                            style
+                            }
                         }}
                         onApply={handleApplyDate}
                     >
