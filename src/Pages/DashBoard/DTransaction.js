@@ -6,11 +6,15 @@ import Helper from "../../utils/helpers";
 import TransactionApi from "../../Apis/TransactionApi";
 import Skeleton from "react-loading-skeleton";
 import {FormattedNumber} from "react-intl";
+import {useSelector} from "react-redux";
+import moment from "moment/moment";
 
 function DTransaction() {
   const { t } = useTranslation();
   const [transactions, setTransactions] = useState(null);
   const [loading, setLoading] = useState(true);
+  const formatDate = useSelector((state) => state.auth.user.setting.formatDate);
+
 
 
   useEffect(() => {
@@ -67,12 +71,12 @@ function DTransaction() {
                               {transaction.note}
                             </h6>
                             <span className="fs-14">{
-                              transaction.datetime
+                              moment(transaction.datetime, "YYYY-MM-DD").format(formatDate)
                             }</span>
                           </td>
                           <td>
                             <span className="fs-16 text-black font-w600">
-                              <FormattedNumber value={transaction.amount} style="currency" currency={"VND"}/>
+                              <FormattedNumber value={transaction.amount} style="currency" currency={transaction.walletCurrency}/>
                             </span>
                           </td>
                           <td>

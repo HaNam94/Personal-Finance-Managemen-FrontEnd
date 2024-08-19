@@ -1,22 +1,20 @@
-import {useState} from "react";
-import {Button, Modal} from "react-bootstrap";
-import ProfileUpdatePasswordForm from "./ProfileUpdatePasswordForm";
-import * as Yup from "yup";
-import {useFormik} from "formik";
-import UserApi from "../../Apis/UserApi";
-import Helper from "../../utils/helpers";
-
+import { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import ProfileUpdatePasswordForm from './ProfileUpdatePasswordForm'; // Import component
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import UserApi from '../../Apis/UserApi';
+import Helper from '../../utils/helpers';
 
 const validationSchema = Yup.object({
-  currentPassword: Yup.string().required("Mật khẩu hiện tại phải nhập!"),
+  currentPassword: Yup.string().required('Mật khẩu hiện tại phải nhập!'),
   newPassword: Yup.string()
-    .required("Mật khẩu mới phải nhập!")
-    .min(6, "Mật khẩu phải từ 6 đến 50 kí tự"),
+    .required('Mật khẩu mới phải nhập!')
+    .min(6, 'Mật khẩu phải từ 6 đến 50 kí tự'),
   confirmPassword: Yup.string()
-    .required("Xác nhận mật khẩu phải nhập!")
-    .oneOf([Yup.ref('newPassword'), null], "Mật khẩu xác nhận không trùng với mật khẩu mới")
-})
-
+    .required('Xác nhận mật khẩu phải nhập!')
+    .oneOf([Yup.ref('newPassword'), null], 'Mật khẩu xác nhận không trùng với mật khẩu mới'),
+});
 
 function ProfileChangePassword() {
   const [show, setShow] = useState(false);
@@ -40,7 +38,7 @@ function ProfileChangePassword() {
         setSubmitting(false);
       }
     },
-    validateOnMount: false
+    validateOnMount: false,
   });
 
   return (
@@ -54,7 +52,7 @@ function ProfileChangePassword() {
           <Modal.Title>Thay đổi mật khẩu</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ProfileUpdatePasswordForm formik={formik}/>
+          <ProfileUpdatePasswordForm formik={formik} /> 
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-sm" variant="secondary" onClick={handleClose}>
@@ -66,6 +64,7 @@ function ProfileChangePassword() {
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
+
 export default ProfileChangePassword;

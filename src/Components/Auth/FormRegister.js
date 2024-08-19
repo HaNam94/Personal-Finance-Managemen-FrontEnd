@@ -1,6 +1,7 @@
 import React from "react";
+import PasswordInput from "./PasswordInput"; 
 
-function FormRegister({formik, isLoading}) {
+function FormRegister({ formik, isLoading }) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="row">
@@ -15,8 +16,9 @@ function FormRegister({formik, isLoading}) {
               onChange={formik.handleChange}
               value={formik.values.username}
             />
-            {formik.touched.username && formik.errors.username ?
-              <div className="text-danger">{formik.errors.username}</div> : null}
+            {formik.touched.username && formik.errors.username ? (
+              <div className="text-danger">{formik.errors.username}</div>
+            ) : null}
           </div>
           <div className="mb-3">
             <label>Email</label>
@@ -28,40 +30,33 @@ function FormRegister({formik, isLoading}) {
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            {formik.touched.email && formik.errors.email ?
-              <div className="text-danger">{formik.errors.email}</div> : null}
+            {formik.touched.email && formik.errors.email ? (
+              <div className="text-danger">{formik.errors.email}</div>
+            ) : null}
           </div>
           <div className="mb-3">
-            <label>Mật khẩu</label>
-            <input
-              className="form-control"
-              id="password"
-              name="password"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
+            <PasswordInput
+              formik={formik}
+              fieldName="password"
+              label="Mật khẩu"
             />
-            {formik.touched.password && formik.errors.password ?
-              <div className="text-danger">{formik.errors.password}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Nhập lại mật khẩu</label>
-            <input
-              className="form-control"
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
+            <PasswordInput
+              formik={formik}
+              fieldName="confirmPassword"
+              label="Nhập lại mật khẩu"
             />
-            {formik.touched.confirmPassword && formik.errors.confirmPassword ?
-              <div className="text-danger">{formik.errors.confirmPassword}</div> : null}
           </div>
         </div>
       </div>
 
       <div>
-        <button type="submit" className="btn btn-primary btn-block" disabled={formik.isSubmitting}>
+        <button
+          type="submit"
+          className="btn btn-primary btn-block"
+          disabled={formik.isSubmitting}
+        >
           {isLoading ? (
             <div className="spinner-border spinner-border-sm" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -72,8 +67,7 @@ function FormRegister({formik, isLoading}) {
         </button>
       </div>
     </form>
-
-  )
+  );
 }
 
 export default FormRegister;

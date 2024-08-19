@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import {useTranslation} from "react-i18next";
 
 function UnshareModal({ email, handleUnshare }) {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -15,7 +17,7 @@ function UnshareModal({ email, handleUnshare }) {
   return (
     <>
       <Button variant={"danger"} size={"sm"} onClick={handleShow}>
-        Xóa liên kết
+      {t("deleteShare")}
       </Button>
 
       <Modal show={show} onHide={handleClose}>

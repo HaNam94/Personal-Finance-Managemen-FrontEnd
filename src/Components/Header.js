@@ -9,7 +9,7 @@ export default function Header() {
   const { t } = useTranslation();
   const location = useLocation();
   const user = useSelector((state) => state.auth.user);
-
+  console.log(user)
   const getTitle = () => {
     const path = location.pathname;
 
@@ -20,22 +20,22 @@ export default function Header() {
       return t("wallet");
     }
     if (/^\/budgets/.test(path)) {
-      return 'Ngân sách';
+      return t("budget");
     }
     if (/^\/categories/.test(path)) {
-      return 'Danh mục';
+      return t("category");
     }
     if (/^\/reports/.test(path)) {
-      return 'Báo cáo';
+      return t("report");
     }
     if (/^\/profile/.test(path)) {
-      return 'Tài khoản';
+      return t("profile");
     }
     if (/^\/setting/.test(path)) {
-      return 'Cài đặt';
+      return t("setting");
     }
 
-    return 'Tổng quan';
+    return t("dashboard");
   }
 
   return (
