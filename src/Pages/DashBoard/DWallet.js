@@ -87,7 +87,7 @@ function DWallet() {
               <div className="col-md-6">
                 <h4 className="card-title">{t("overviewWallet")}</h4>
                 <span>
-                 Tiền không phải là tất cả, nhưng nó là một phần quan trọng trong cuộc sống của chúng ta.
+                {t("title")}
                 </span>
                 <ul className="card-list mt-4">
                   {

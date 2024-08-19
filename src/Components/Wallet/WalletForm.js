@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = false}) {
-
+  const { t } = useTranslation();
   const currencyOptions = ["VND", "USD"].map(el => {
     return (
       <option key={el} value={el}>
