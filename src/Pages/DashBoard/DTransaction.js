@@ -11,7 +11,7 @@ import moment from "moment/moment";
 
 function DTransaction() {
   const { t } = useTranslation();
-  const [transactions, setTransactions] = useState(null);
+  const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const formatDate = useSelector((state) => state.auth.user.setting.formatDate);
 
