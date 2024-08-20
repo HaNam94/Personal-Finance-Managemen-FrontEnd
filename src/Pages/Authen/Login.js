@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import AuthApi from "../../Apis/AuthApi";
 import {useDispatch, useSelector} from "react-redux";
 import {setToken} from "../../Redux/auth/authSlice";
+import Google from "../../Components/Auth/Google";
 
 const validationSchema = Yup.object({
   email: Yup.string().email().required("Vui lòng nhập email!"),
@@ -58,7 +59,13 @@ function Login() {
                 </div>
                 <h3 className="text-center mb-4 mt-2">Đăng Nhập</h3>
                 <FormLogin formik={formik} />
-                <div className="new-account mt-3">
+                <div className=" mt-3 text-center">
+                  <p><small>Hoặc</small></p>
+                  <div className="d-inline-block">
+                    <Google/>
+                  </div>
+                </div>
+                <div className="new-account mt-3 text-center">
                   <p>
                     Chưa có tài khoản ?{" "}
                     <Link to={"/signup"} className="text-primary">

@@ -22,6 +22,9 @@ class AuthApi {
     return axiosInstance.post('/api/v1/public/verify', param);
   }
 
+  static async google(credential) {
+    return axiosInstance.post('/api/v1/public/google-login', credential);
+  }
 }
 
 export default AuthApi;
