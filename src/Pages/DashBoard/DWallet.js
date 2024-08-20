@@ -76,7 +76,6 @@ function DWallet() {
                       <FormattedNumber value={totalBalanceByCurrency()} style="currency" currency={user.setting.currency}/>
                   }
                 </h2>
-                <span>+0,8% {t("percentageChange")}</span>
               </div>
               <div className="w-45">
                 <Lottie animationData={WalletBounce}/>

@@ -10,7 +10,7 @@ import {fetchWallets} from "../../Redux/wallet/walletSlice";
 import moment from "moment";
 
 const validationSchema = Yup.object({
-    amount: Yup.number().min(0, "Số tiền phải lớn hơn 0"),
+    amount: Yup.number().min(0, "Số tiền phải lớn hơn 0").max(999999999999, "Số tiền quá lớn"),
     datetime: Yup.date().required("vui lòng nhập ngày giao dịch"),
     categoryId: Yup.number().required("Không được để trống"),
     walletId: Yup.number().required("Không đuc để trông")

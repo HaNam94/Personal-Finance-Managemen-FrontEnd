@@ -145,7 +145,7 @@ class Helper {
 
 
   static getColorByIndex(index) {
-    return appColors[index];
+    return appColors[index] || "#5bcfc5";
   }
   static getArrayColor(length) {
     return Array.from({length}, (_, index) => Helper.getColorByIndex(index));

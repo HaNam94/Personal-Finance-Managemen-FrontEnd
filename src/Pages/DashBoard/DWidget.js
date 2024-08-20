@@ -53,7 +53,7 @@ function DWidget() {
                   loading ? "-" :
                       transactions.length
                 }</h2>
-                <span className="badge badge-danger">-10.5%</span>
+                <span className="badge badge-danger">--%</span>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@ function DWidget() {
 
 
                 </h2>
-                <span className="badge badge-success">+0.5%</span>
+                <span className="badge badge-success">--%</span>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ function DWidget() {
                         <FormattedNumber value={sumAmount(0)} style="currency" currency={uCurrency}/>
                   }
                 </h2>
-                <span className="badge badge-danger">-1.5%</span>
+                <span className="badge badge-danger">--%</span>
               </div>
             </div>
           </div>

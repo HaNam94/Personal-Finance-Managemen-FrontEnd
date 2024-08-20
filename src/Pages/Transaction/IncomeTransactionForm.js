@@ -51,10 +51,10 @@ function IncomeTransactionForm({formik,closeModal}) {
                             <label>{t("amount")}</label>
                             <input
                                 className="form-control"
-                                type="text"
+                                type="number"
                                 name="amount"
                                 onChange={handleAmountChange}
-                                value={Helper.formatNumber(formik.values.amount)}/>
+                                value={formik.values.amount}/>
                             {formik.touched.amount && formik.errors.amount ?
                                 <div className="text-danger">{formik.errors.amount}</div> : null}
                         </div>

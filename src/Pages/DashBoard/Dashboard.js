@@ -13,10 +13,7 @@ export default function Dashboard() {
           <DWallet/>
         </div>
         <DWidget />
-        <div className="col-4">
-          <DBudget />
-        </div>
-        <div className="col-8">
+        <div className="col-12">
           <DTransaction/>
         </div>
       </div>
