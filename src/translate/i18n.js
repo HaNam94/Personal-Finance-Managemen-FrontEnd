@@ -88,6 +88,15 @@ const resources = {
       "all":"Tất cả",
       "revenue":"Thu",
       "expenditure":"Chi",
+      "addTransaction":"Thêm Giao Dịch",
+      "edit":"Sửa",
+      "delete":"Xóa",
+      "confirmDeleteTrans":"Bạn có chắc chắn muốn xóa giao dịch này không?",
+      "pay":"Chuyển tiền",
+      "walletIn":"Ví chuyển tiền",
+      "walletOut":"Ví nhận tiền ",
+      "addCategory":"Tạo phân loại mới",
+      "chooseCategory":"Chọn một loại phân loại",
       "title": " Tiền không phải là tất cả, nhưng nó là một phần quan trọng trong cuộc sống của chúng ta."
     }
   },

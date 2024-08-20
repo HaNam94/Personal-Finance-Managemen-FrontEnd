@@ -19,8 +19,8 @@ function Transaction() {
   const { t } = useTranslation();
     const [transactions, setTransactions] = useState(null);
     const [categoryType, setCategoryType] = useState(2);
-    const [category, setCategory] = useState({id: '', categoryName: 'Phân loại', icon: "icon_000"});
-    const [wallet, setWallet] = useState({id: '', walletName: 'Ví tiền', icon: "icon_000"});
+    const [category, setCategory] = useState({id: '', categoryName: t("category"), icon: "icon_000"});
+    const [wallet, setWallet] = useState({id: '', walletName: t("wallet"), icon: "icon_000"});
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
     const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
@@ -182,7 +182,7 @@ function Transaction() {
                           getOptionValue={(option) => option.id}
                           getOptionLabel={(option) => option.categoryName}
                           options={[
-                              {id: '', categoryName: 'Phân loại', icon: "icon_000"},
+                              {id: '', categoryName: t("category"), icon: "icon_000"},
                               ...categories,
                           ]}
                           components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}
@@ -197,7 +197,7 @@ function Transaction() {
                           getOptionValue={(option) => option.id}
                           getOptionLabel={(option) => option.walletName}
                           options={[
-                              {id: '', walletName: 'Ví tiền', icon: "icon_000"},
+                              {id: '', walletName: t("wallet"), icon: "icon_000"},
                               ...wallets,
                           ]}
                           components={{Option: Helper.customOptionSelect, SingleValue: Helper.customSingleValueSelect}}

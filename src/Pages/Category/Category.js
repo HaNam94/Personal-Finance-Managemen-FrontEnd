@@ -3,8 +3,10 @@ import Skeleton from "react-loading-skeleton";
 import CategoryItem from "./CategoryItem";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {useTranslation} from "react-i18next";
 
 function Category() {
+  const { t } = useTranslation();
   const categories = useSelector((state) => state.category.categories);
   const status = useSelector((state) => state.category.status);
     console.log(categories);
@@ -13,7 +15,7 @@ function Category() {
 
       <div className="text-end mb-3">
         <Link to={'/categories/new'} className="btn btn-primary btn-sm">
-          <span className="me-2">Tạo phan loại mới</span>
+          <span className="me-2">{t("addCategory")}</span>
           <i className="fa-solid fa-plus"></i>
         </Link>
       </div>

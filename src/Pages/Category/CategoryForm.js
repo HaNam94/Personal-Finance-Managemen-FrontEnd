@@ -1,8 +1,9 @@
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 function CategoryForm({formik, submitText = "Tạo mới" }) {
 
-
+  const { t } = useTranslation();
   const categoryTypeOptions = [{type: "income", value: 1}, {type: "outcome", value: 0}].map(el => {
     return (
       <option key={el.value} value={el.value}>
@@ -17,7 +18,7 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
           {
             ('categoryType' in formik.values && (formik.values.parentId == null)) &&
             <div className="mb-3">
-              <label>Loại phân loại</label>
+              <label>{t("categoryType")}</label>
               <select
                 name="categoryType"
                 id="categoryType"
@@ -25,7 +26,7 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
                 value={formik.values.categoryType}
                 className="form-select"
               >
-                <option value="">Chọn một loại phân loại</option>
+                <option value="">{t("chooseCategory")}</option>
                 {categoryTypeOptions}
               </select>
               {formik.touched.categoryType && formik.errors.categoryType ?
@@ -34,7 +35,7 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
           }
 
           <div className="mb-3">
-            <label>Tên phân loại</label>
+            <label>{t("categoryName")}</label>
             <input
               className="form-control"
               id="categoryName"
@@ -47,7 +48,7 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
               <div className="text-danger">{formik.errors.categoryName}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Ghi chú</label>
+            <label>{t("note")}</label>
             <input
               className="form-control"
               id="note"
@@ -64,7 +65,7 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
         <div className="col-6">
           <div className="mb-3">
             <div className="mb-3">
-              <label>Icon phân loại</label>
+              <label>{t("categoryIcon")}</label>
               <div className="d-flex flex-wrap box-icon">
                 {Array.from({length: 142}, (_, i) => `icon_${i}`).map((option) => (
                   <div key={option} className="icon-item">
@@ -92,7 +93,7 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
 
 
       <div className="text-end">
-          <Link to={"/categories"} className="btn btn-secondary btn-sm">Hủy</Link>
+          <Link to={"/categories"} className="btn btn-secondary btn-sm">{t("cancel")}</Link>
           <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>{submitText}
           </button>
       </div>
