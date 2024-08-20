@@ -18,6 +18,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setToken: (state, action) => {
+      state.status = "idle";
       state.token = action.payload;
       localStorage.setItem('token', action.payload);
     },

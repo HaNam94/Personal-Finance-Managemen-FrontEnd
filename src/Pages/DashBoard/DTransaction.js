@@ -53,7 +53,7 @@ function DTransaction() {
                   <tbody>
                   {
                     transactions.slice(0, 5).map((transaction, index) => (
-                        <tr>
+                        <tr key={transaction.id}>
                           <td>
                             {
                               transaction.categoryType === 1 ?

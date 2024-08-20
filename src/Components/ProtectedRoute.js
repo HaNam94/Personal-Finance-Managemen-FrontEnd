@@ -11,12 +11,10 @@ import {IntlProvider} from "react-intl";
 const ProtectedRoute = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  const userId = useSelector((state) => state.auth.user?.id);
   const user = useSelector((state) => state.auth.user);
   const status = useSelector((state) => state.auth.status);
   const statusExchange = useSelector((state) => state.exchangeRates.status)
 
-  // Fetch user information if token is present on the first load
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -26,7 +24,7 @@ const ProtectedRoute = () => {
       dispatch(fetchCategories());
       dispatch(fetchExchangeRates());
     }
-  }, [dispatch, userId]);
+  }, [dispatch, token]);
   return (
       token ?
           <>

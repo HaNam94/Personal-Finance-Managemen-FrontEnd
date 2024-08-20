@@ -11,7 +11,7 @@ const Google = () => {
     const handleSuccess = async (response) => {
         try {
             const res = await AuthApi.google({token: response.credential});
-            dispatch(setToken(res.data.accessToken) );
+            dispatch(setToken(res.data.accessToken));
             Helper.toastSuccess('Đăng nhập thành công!');
         } catch (error) {
             Helper.parseError(error);

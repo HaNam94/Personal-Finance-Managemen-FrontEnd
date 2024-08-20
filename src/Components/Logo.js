@@ -23,7 +23,7 @@ function Logo({width, height, simple = false}) {
       </svg>
       {
         !simple ? (
-          <span class={"logo-text"}>QNSK</span>
+          <span className={"logo-text"}>QNSK</span>
         ) : ''
       }
 
