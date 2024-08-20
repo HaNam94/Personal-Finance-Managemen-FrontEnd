@@ -1,4 +1,46 @@
-function BudgetItem({budget}) {
+import {FormattedNumber} from "react-intl";
+import {Link} from "react-router-dom";
+import BudgetDelete from "./BudgetDelete";
 
+function BudgetItem({budget, reload}) {
+
+    return (
+        <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
+            <div className="d-flex align-items-center">
+                <div className="border-end px-3">
+                    <img src={`/images/icons/${budget.categoryIcon}.png`} className="img-fluid"
+                         style={{width: "50px"}}/>
+                </div>
+                <div className="border-end px-3">
+                    <h5 className="mb-0 lh-1">{budget.budgetName}</h5>
+                    <p className="mb-0 lh-1">{budget.budgetDescription}</p>
+                </div>
+                <div className="border-end px-3">
+                    <h5 className="mb-0 lh-1">
+                        <FormattedNumber value={budget.budgetAmount} style="currency" currency={budget.currency}/>
+                    </h5>
+
+                    <p className="mb-0 lh-1">Còn lại: <FormattedNumber value={budget.budgetAmount - budget.totalAmountForMonth} style="currency" currency={budget.currency}/></p>
+                </div>
+                <div className="border-end px-3 flex-grow-1">
+                    <div className="progress default-progress">
+                        <div className="progress-bar bg-gradient-1 progress-animated" role="progressbar"
+                             style={{width: `${(budget.totalAmountForMonth / budget.budgetAmount) * 100}%`, height: '20px'}}></div>
+                    </div>
+                </div>
+                <div className=" ps-3 text-end">
+                    <Link to={"/budgets/" + budget.id}
+                          className="btn btn-rounded btn-outline-secondary btn-sm p-2 ms-2">
+                        <span className="me-2">Sửa</span>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                    </Link>
+                    <BudgetDelete budget={budget} reload={reload}/>
+                </div>
+            </div>
+
+
+        </div>
+    )
 }
+
 export default BudgetItem;
