@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PasswordInput from "./PasswordInput";
+import Google from "./Google";
 
 function FormLogin({ formik }) {
   return (
@@ -29,7 +30,7 @@ function FormLogin({ formik }) {
           </div>
         </div>
       </div>
-      <div className="row d-flex justify-content-between mt-4 mb-2">
+      <div className="row d-flex justify-content-between mt-1 mb-2">
         <div className="mb-3">
           <Link to="/forgot-password">Quên mật khẩu ?</Link>
         </div>
