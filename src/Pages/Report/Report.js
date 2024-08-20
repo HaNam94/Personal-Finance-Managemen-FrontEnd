@@ -11,14 +11,14 @@ import BarChart from "../../Components/Chart/BarChart";
 import useCurrencyConverter from "../../effect/useCurrencyConverter";
 
 function Report() {
+    const { t } = useTranslation();
     const [transactions, setTransactions] = useState(null);
-    const [category, setCategory] = useState({ id: '', categoryName: 'Phân loại', icon: "icon_000" });
-    const [wallet, setWallet] = useState({ id: '', walletName: 'Ví tiền', icon: "icon_000" });
+    const [category, setCategory] = useState({ id: '', categoryName: t("category"), icon: "icon_000" });
+    const [wallet, setWallet] = useState({ id: '', walletName:t("wallet"), icon: "icon_000" });
     const [startDate, setStartDate] = useState(moment().subtract(7, 'days'));
     const [endDate, setEndDate] = useState(moment());
     const categories = useSelector((state) => state.category.allCategories);
     const wallets = useSelector((state) => state.wallet.wallets);
-    const { t } = useTranslation();
     const [loading, setLoading] = useState(true);
     const { convertCurrency } = useCurrencyConverter();
     const uCurrency = useSelector((state) => state.auth.user.setting.currency);
@@ -102,8 +102,8 @@ function Report() {
             { name: 'Chi', data: chiData }
         ])
         return [
-            { name: 'Thu', data: thuData },
-            { name: 'Chi', data: chiData }
+            { name:t("revenue") , data: thuData },
+            { name:t("expenditure") , data: chiData }
         ];
     };
 
@@ -139,7 +139,7 @@ function Report() {
                             getOptionValue={(option) => option.id}
                             getOptionLabel={(option) => option.categoryName}
                             options={[
-                                {id: '', categoryName: 'Phân loại', icon: "icon_000"},
+                                {id: '', categoryName: t("category"), icon: "icon_000"},
                                 ...categories,
                             ]}
                             components={{
@@ -157,7 +157,7 @@ function Report() {
                             getOptionValue={(option) => option.id}
                             getOptionLabel={(option) => option.walletName}
                             options={[
-                                {id: '', walletName: 'Ví tiền', icon: "icon_000"},
+                                {id: '', walletName: t("wallet"), icon: "icon_000"},
                                 ...wallets,
                             ]}
                             components={{

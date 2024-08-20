@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import UserApi from '../../Apis/UserApi';
 import Helper from '../../utils/helpers';
+import {useTranslation} from "react-i18next";
 
 const validationSchema = Yup.object({
   currentPassword: Yup.string().required('Mật khẩu hiện tại phải nhập!'),
@@ -17,6 +18,7 @@ const validationSchema = Yup.object({
 });
 
 function ProfileChangePassword() {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -44,22 +46,22 @@ function ProfileChangePassword() {
   return (
     <>
       <Button className="btn-sm ms-2" variant="primary" onClick={handleShow}>
-        Thay đổi mật khẩu
+      {t("changePassword")}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Thay đổi mật khẩu</Modal.Title>
+          <Modal.Title>{t("changePassword")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ProfileUpdatePasswordForm formik={formik} /> 
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-sm" variant="secondary" onClick={handleClose}>
-            Hủy
+          {t("cancel")}
           </Button>
           <Button className="btn-sm" variant="success" onClick={formik.submitForm} disabled={formik.isSubmitting}>
-            Lưu
+          {t("update")}
           </Button>
         </Modal.Footer>
       </Modal>

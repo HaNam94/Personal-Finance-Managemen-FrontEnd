@@ -1,11 +1,13 @@
+import {useTranslation} from "react-i18next";
 function SettingForm({formik}) {
+    const { t } = useTranslation();
     console.log(formik.values)
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className="row">
                 <div className="col-6">
                     <div className="mb-3">
-                        <label>Tiền tệ</label>
+                        <label>{t("typeMoney")}</label>
                         <select
                             name="currency"
                             id="currency"
@@ -37,7 +39,7 @@ function SettingForm({formik}) {
                         </select>
                     </div>
                     <div className="mb-3">
-                        <label>Định dạng hiển thị tiền</label>
+                        <label>{t("formartMoney")}</label>
                         <select
                             name="formatCurrency"
                             id="formatCurrency"
@@ -52,7 +54,7 @@ function SettingForm({formik}) {
                 </div>
                 <div className="col-6">
                     <div className="mb-3">
-                        <label>Định dạng ngày</label>
+                        <label>{t("formartDate")}</label>
                         <select
                             name="formatDate"
                             id="formatDate"
@@ -71,8 +73,8 @@ function SettingForm({formik}) {
 
 
             <div className="text-end">
-                <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>Cập
-                    Nhật
+                <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>
+                {t("edit")}
                 </button>
 
             </div>
