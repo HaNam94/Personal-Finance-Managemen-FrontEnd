@@ -4,8 +4,10 @@ import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import Lottie from "lottie-react";
 import logoutLottieData from "../../LottieData/logout.json";
+import {useTranslation} from "react-i18next";
 
 function Logout() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -37,14 +39,14 @@ function Logout() {
           <div className="w-50 mx-auto">
             <Lottie animationData={logoutLottieData}/>
           </div>
-          <h4 className="text-center">Xác Nhận Đăng Xuất</h4>
+          <h4 className="text-center">{t("confirmLogout")}</h4>
 
           <div className="text-center mt-4">
             <Button className="mx-2" variant="secondary" onClick={handleClose}>
-              Hủy
+            {t("logout")}
             </Button>
             <Button className="mx-2" variant="success" onClick={handleLogout}>
-              Đăng Xuất
+            {t("logout")}
             </Button>
           </div>
         </Modal.Body>

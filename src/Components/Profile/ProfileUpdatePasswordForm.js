@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import {useTranslation} from "react-i18next";
 
 const PasswordInput = ({ formik, fieldName, label }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,11 +36,12 @@ const PasswordInput = ({ formik, fieldName, label }) => {
 };
 
 const ProfileUpdatePasswordForm = ({ formik }) => {
+  const { t } = useTranslation();
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <PasswordInput formik={formik} fieldName="currentPassword" label="Mật khẩu hiện tại" />
-      <PasswordInput formik={formik} fieldName="newPassword" label="Mật khẩu mới" />
-      <PasswordInput formik={formik} fieldName="confirmPassword" label="Xác nhận mật khẩu" />
+      <PasswordInput formik={formik} fieldName="currentPassword" label= {t("nowPass")} />
+      <PasswordInput formik={formik} fieldName="newPassword" label={t("newPass")} />
+      <PasswordInput formik={formik} fieldName="confirmPassword" label={t("confirmPass")} />
     </Form>
   );
 };
