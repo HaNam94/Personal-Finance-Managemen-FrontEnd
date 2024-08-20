@@ -18,6 +18,48 @@ function CategoryForm({formik, isUpdate = false }) {
       <div className="row">
         <div className="col-6">
           <div className="mb-3">
+            <label>Tên Ngân Sách</label>
+            <input
+                className="form-control"
+                id="budgetName"
+                name="budgetName"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.budgetName}
+            />
+            {formik.touched.budgetName && formik.errors.budgetName ?
+                <div className="text-danger">{formik.errors.budgetName}</div> : null}
+          </div>
+
+          <div className="mb-3">
+            <label>Ngân sách</label>
+            <input
+                className="form-control"
+                id="budgetAmount"
+                name="budgetAmount"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.budgetAmount}
+            />
+            {formik.touched.budgetAmount && formik.errors.budgetAmount ?
+                <div className="text-danger">{formik.errors.budgetAmount}</div> : null}
+          </div>
+          <div className="mb-3">
+            <label>Mô tả</label>
+            <input
+                className="form-control"
+                id="budgetDescription"
+                name="budgetDescription"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.budgetDescription}
+            />
+            {formik.touched.budgetDescription && formik.errors.budgetDescription ?
+                <div className="text-danger">{formik.errors.budgetDescription}</div> : null}
+          </div>
+        </div>
+        <div className="col-6">
+          <div className="mb-3">
             <label>Chọn Phân Loại</label>
             <Select
 
@@ -69,49 +111,8 @@ function CategoryForm({formik, isUpdate = false }) {
           </div>
 
 
-          <div className="mb-3">
-            <label>Tên Ngân Sách</label>
-            <input
-                className="form-control"
-                id="budgetName"
-                name="budgetName"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.budgetName}
-            />
-            {formik.touched.budgetName && formik.errors.budgetName ?
-                <div className="text-danger">{formik.errors.budgetName}</div> : null}
-          </div>
+        </div>
 
-        </div>
-        <div className="col-6">
-          <div className="mb-3">
-            <label>Ngân sách</label>
-            <input
-                className="form-control"
-                id="budgetAmount"
-                name="budgetAmount"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.budgetAmount}
-            />
-            {formik.touched.budgetAmount && formik.errors.budgetAmount ?
-                <div className="text-danger">{formik.errors.budgetAmount}</div> : null}
-          </div>
-          <div className="mb-3">
-            <label>Mô tả</label>
-            <input
-                className="form-control"
-                id="budgetDescription"
-                name="budgetDescription"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.budgetDescription}
-            />
-            {formik.touched.budgetDescription && formik.errors.budgetDescription ?
-                <div className="text-danger">{formik.errors.budgetDescription}</div> : null}
-          </div>
-        </div>
       </div>
 
 

@@ -12,11 +12,11 @@ function BudgetItem({budget, reload}) {
                          style={{width: "50px"}}/>
                 </div>
                 <div className="border-end px-3">
-                    <h5 className="mb-0 lh-1">{budget.budgetName}</h5>
+                    <h5 className="mb-0 lh-1 mb-1">{budget.budgetName}</h5>
                     <p className="mb-0 lh-1">{budget.budgetDescription}</p>
                 </div>
                 <div className="border-end px-3">
-                    <h5 className="mb-0 lh-1">
+                    <h5 className="mb-0 lh-1 mb-1">
                         <FormattedNumber value={budget.budgetAmount} style="currency" currency={budget.currency}/>
                     </h5>
 
@@ -30,7 +30,7 @@ function BudgetItem({budget, reload}) {
                 </div>
                 <div className=" ps-3 text-end">
                     <Link to={"/budgets/" + budget.id}
-                          className="btn btn-rounded btn-outline-secondary btn-sm p-2 ms-2">
+                          className="btn btn-rounded btn-outline-secondary btn-sm p-1 ms-2">
                         <span className="me-2">Sửa</span>
                         <i className="fa-solid fa-pen-to-square"></i>
                     </Link>

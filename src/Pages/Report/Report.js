@@ -21,7 +21,7 @@ function Report() {
     const wallets = useSelector((state) => state.wallet.wallets);
     const [loading, setLoading] = useState(true);
     const { convertCurrency } = useCurrencyConverter();
-    const uCurrency = useSelector((state) => state.auth.user.setting.currency);
+        const uCurrency = useSelector((state) => state.auth.user.setting.currency);
     const formatDate = useSelector((state) => state.auth.user.setting.formatDate);
 
 
