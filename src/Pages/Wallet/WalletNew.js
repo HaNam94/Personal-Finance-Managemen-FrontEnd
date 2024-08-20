@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {fetchWallets} from "../../Redux/wallet/walletSlice";
 
 const validationSchema = Yup.object({
-  amount: Yup.number().min(0, "Tiền hiện có phải lớn hơn 0!").max(999999999999, "Số tiền quá lớn"),
+  amount: Yup.number().min(0, "Tiền hiện có phải lớn hơn 0!").max(10000000000, "Số tiền quá lớn"),
   walletName: Yup.string().required("Vui lòng nhập tên ví!"),
   icon: Yup.string().required("Vui lòng chọn icon!"),
   currency: Yup.string().required("Vui lòng chọn loại tiền tệ!"),

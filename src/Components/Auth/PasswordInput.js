@@ -21,7 +21,7 @@ const PasswordInput = ({ formik, fieldName, label, value, onChange, placeholder 
       };
 
   return (
-    <Form.Group controlId={fieldName}>
+    <Form.Group controlId={fieldName} className={"mb-3"}>
       <Form.Label>{label}</Form.Label>
       <div className="position-relative">
         <Form.Control

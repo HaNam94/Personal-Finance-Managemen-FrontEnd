@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Select from 'react-select';
-import {Link} from "react-router-dom";
-import CategoryApi from "../../Apis/CategoryApi";
-import WalletApi from "../../Apis/WalletApi";
 import {useSelector} from "react-redux";
 import Helper from "../../utils/helpers";
 import moment from "moment";

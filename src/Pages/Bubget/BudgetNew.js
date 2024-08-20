@@ -8,7 +8,7 @@ import BudgetApi from "../../Apis/BudgetApi";
 
 const validationSchema = Yup.object({
   budgetName: Yup.string().required("Vui lòng nhập tên!"),
-  budgetAmount: Yup.number().min(0, "Vui lòng nhập lớn hơn 0").required("Vui lòng nhập giá tr!"),
+  budgetAmount: Yup.number().min(0, "Vui lòng nhập lớn hơn 0").max(10000000000, "Giá trị quá lớn").required("Vui lòng nhập giá tr!"),
   budgetDescription: Yup.string().required("Vui lòng nhập mô tả!"),
   categoryId: Yup.string().required("Vui lòng chọn phân loại"),
   currency: Yup.string().required("Vui lòng chọn đơn vị tiền")

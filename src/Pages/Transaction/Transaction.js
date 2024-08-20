@@ -74,7 +74,7 @@ function Transaction() {
         for (let i = 0; i < totalPages; i++) {
             pages.push(
                 <li key={i} className={`page-item ${page === i ? "active" : ""}`}>
-                    <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(i)}>
+                    <a className="page-link" href="#" onClick={() => handlePageChange(i)}>
                         {i + 1}
                     </a>
                 </li>
@@ -85,14 +85,14 @@ function Transaction() {
             <nav>
                 <ul className="pagination pagination-gutter pagination-primary no-bg">
                     <li className="page-item page-indicator">
-                        <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(page - 1)}
+                        <a className="page-link" href="#" onClick={() => handlePageChange(page - 1)}
                            disabled={page === 0}>
                             <i className="fa-solid fa-chevron-left"></i>
                         </a>
                     </li>
                     {pages}
                     <li className="page-item page-indicator">
-                        <a className="page-link" href="javascript:void(0)" onClick={() => handlePageChange(page + 1)}
+                        <a className="page-link" href="#" onClick={() => handlePageChange(page + 1)}
                            disabled={page === totalPages - 1}>
                             <i className="fa-solid fa-chevron-right"></i>
                         </a>

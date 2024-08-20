@@ -64,7 +64,6 @@ function DTransaction() {
                             <h6 className="fs-16 font-w600 mb-0">
                               {transaction.categoryName}
                             </h6>
-                            <span className="fs-14">{transaction.note}</span>
                           </td>
                           <td>
                             <h6 className="fs-16 text-black font-w600 mb-0">
