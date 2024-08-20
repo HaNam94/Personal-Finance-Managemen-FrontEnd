@@ -44,7 +44,7 @@ function Signup() {
         navigate('/comfirm-email', { email: values.email });
         Helper.toastSuccess('Đăng ký thành công!');
       } catch (error) {
-        Helper.toastError('Đăng ký thất bại!');
+        Helper.parseError(error)
       } finally {
         setIsLoading(false);
       }
