@@ -4,9 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import WalletApi from "../../Apis/WalletApi";
 import Helper from "../../utils/helpers";
 import {fetchWallets} from "../../Redux/wallet/walletSlice";
+import {useTranslation} from "react-i18next";
 
 
 function TransferTransactionForm({ formik, closeModal}) {
+    const { t } = useTranslation();
     const [selectedSourceWallet, setSelectedSourceWallet] = useState(null);
     const [selectedDestinationWallet, setSelectedDestinationWallet] = useState(null);
     const ownerWallets = useSelector((state) => state.wallet.ownerWallets);
@@ -60,7 +62,7 @@ function TransferTransactionForm({ formik, closeModal}) {
                 <div className="row">
                     <div className="col-12">
                         <div className="mb-3">
-                            <label>Số tiền</label>
+                            <label>{t("amount")}</label>
                             <input
                                 className="form-control"
                                 type="number"
@@ -74,7 +76,7 @@ function TransferTransactionForm({ formik, closeModal}) {
                     </div>
                     <div className="col-12">
                         <div className="mb-3">
-                            <label>Ví chuyển tiền</label>
+                        {t("walletIn")}
                             <Select
                                 defaultValue={0}
                                 onChange={handleSourceWalletChange}
@@ -88,7 +90,7 @@ function TransferTransactionForm({ formik, closeModal}) {
                             />
                         </div>
                         <div className="mb-3">
-                            <label>Ví nhận tiền</label>
+                        {t("walletOut")}
                             <Select
                                 onChange={handleDestinationWalletChange}
                                 name="destinationWalletId"
@@ -102,8 +104,8 @@ function TransferTransactionForm({ formik, closeModal}) {
                         </div>
                     </div>
                     <div className="text-end">
-                        <button className="btn btn-secondary btn-sm" type="button" onClick={closeModal}>Hủy</button>
-                        <button type="submit" className="btn btn-success mx-2 px-4 btn-sm">Thêm</button>
+                        <button className="btn btn-secondary btn-sm" type="button" onClick={closeModal}>{t("cancel")}</button>
+                        <button type="submit" className="btn btn-success mx-2 px-4 btn-sm">{t("add")}</button>
                     </div>
                 </div>
             </form>

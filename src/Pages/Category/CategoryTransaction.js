@@ -4,9 +4,11 @@ import TransactionItem from "../Transaction/TransactionItem";
 import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";
 import TransactionApi from "../../Apis/TransactionApi";
+import {useTranslation} from "react-i18next";
 
 
 function CategoryTransaction({categoryId}) {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [transactions, setTransactions] = useState([])
 
