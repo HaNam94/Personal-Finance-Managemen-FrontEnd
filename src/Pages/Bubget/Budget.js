@@ -69,53 +69,58 @@ function Budget() {
           <i className="fa-solid fa-plus"></i>
         </Link>
       </div>
-      <div className="row">
-        <div className="col-8">
-          {loading ? (
-            <Skeleton count={4} height={80} />
-          ) : budgets.length === 0 ? (
-            <div className="w-50 mx-auto pb-5">
-              <Lottie animationData={AniEmpty} /> 
-            </div>
-          ) : (
-            updatedBudgetsData().map((b, index) => (
-              <BudgetItem key={b.id} budget={b} reload={setLoading} />
-            ))
-          )}
-        </div>
-        {budgets.length > 0 && (  
-          <div className="col-4">
-            <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
-              <div className="text-center">
-                <p className="mb-1">Số tiền có thể chi</p>
-                <h3 className="fw-bold">
-                  <FormattedNumber value={totalBudget - totalAmount} style="currency" currency={uCurrency} />
-                </h3>
-              </div>
-              <SemiChart percent={Number(((totalAmount / totalBudget) * 100).toFixed(2))} />
+      {loading ? (
+          <Skeleton count={4} height={80} />
+      ) :
+        <>
+          {
+            budgets.length > 0 ? (
+                <div className="row">
+                  <div className="col-8">
+                    {
+                      updatedBudgetsData().map((b, index) => (
+                          <BudgetItem key={b.id} budget={b} reload={setLoading} />
+                      ))
+                    }
+                  </div>
+                  <div className="col-4">
+                    <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
+                      <div className="text-center">
+                        <p className="mb-1">Số tiền có thể chi</p>
+                        <h3 className="fw-bold">
+                          <FormattedNumber value={totalBudget - totalAmount} style="currency" currency={uCurrency} />
+                        </h3>
+                      </div>
+                      <SemiChart percent={Number(((totalAmount / totalBudget) * 100).toFixed(2))} />
 
-              <div className="d-flex justify-content-between mt-4">
-                <div className="text-center">
-                  <h5 className="fw-bold">
-                    <FormattedNumber value={totalBudget} style="currency" currency={uCurrency} />
-                  </h5>
-                  <p className="mb-1">Tổng</p>
+                      <div className="d-flex justify-content-between mt-4">
+                        <div className="text-center">
+                          <h5 className="fw-bold">
+                            <FormattedNumber value={totalBudget} style="currency" currency={uCurrency} />
+                          </h5>
+                          <p className="mb-1">Tổng</p>
+                        </div>
+                        <div className="text-center">
+                          <h5 className="fw-bold">
+                            <FormattedNumber value={totalAmount} style="currency" currency={uCurrency} />
+                          </h5>
+                          <p className="mb-1">Đã chi</p>
+                        </div>
+                        <div className="text-center">
+                          <h5 className="fw-bold">{moment().endOf('month').diff(moment(), 'days')} ngày</h5>
+                          <p className="mb-1">Cuối tháng</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <h5 className="fw-bold">
-                    <FormattedNumber value={totalAmount} style="currency" currency={uCurrency} />
-                  </h5>
-                  <p className="mb-1">Đã chi</p>
-                </div>
-                <div className="text-center">
-                  <h5 className="fw-bold">{moment().endOf('month').diff(moment(), 'days')} ngày</h5>
-                  <p className="mb-1">Cuối tháng</p>
-                </div>
+              ) :
+              <div className={"w-25 mx-auto"}>
+                <Lottie animationData={AniEmpty}/>
               </div>
-            </div>
-          </div>
-        )}
-      </div>
+          }
+        </>
+      }
     </div>
   );
 }

@@ -2,7 +2,6 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import Helper from "../../utils/helpers";
 import {useNavigate} from "react-router-dom";
-import CategoryApi from "../../Apis/CategoryApi";
 import BudgetForm from "./BudgetForm";
 import BudgetApi from "../../Apis/BudgetApi";
 

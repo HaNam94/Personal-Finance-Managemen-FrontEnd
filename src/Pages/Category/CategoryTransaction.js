@@ -7,7 +7,7 @@ import TransactionApi from "../../Apis/TransactionApi";
 import {useTranslation} from "react-i18next";
 
 
-function CategoryTransaction({categoryId}) {
+function CategoryTransaction({categoryId, isSmall = false}) {
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [transactions, setTransactions] = useState([])
@@ -31,7 +31,7 @@ function CategoryTransaction({categoryId}) {
   }, [show])
   return (
     <>
-      <button type="button" className="btn btn-rounded btn-outline-secondary btn-sm p-2 ms-2" onClick={handleShow}>
+      <button type="button" className={`btn btn-rounded btn-outline-secondary btn-sm ${isSmall ? "p-1" : "p-2"} ms-2`} onClick={handleShow}>
         <span className="me-2">{t("transaction")}</span>
         <i className="fa-solid fa-chart-line"></i>
       </button>

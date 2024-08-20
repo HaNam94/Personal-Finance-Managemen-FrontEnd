@@ -176,7 +176,7 @@ const resources = {
       "all": "Tất cả",
       "revenue": "Thu",
       "expenditure": "Chi",
-      "addTransaction": "Thêm Giao Dịch",
+      "addTransaction": "Thêm",
       "edit": "Sửa",
       "delete": "Xóa",
       "confirmDeleteTrans": "Bạn có chắc chắn muốn xóa giao dịch này không?",

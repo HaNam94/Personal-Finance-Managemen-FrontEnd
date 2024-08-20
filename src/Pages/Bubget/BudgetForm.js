@@ -2,9 +2,9 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import Select from "react-select";
 import Helper from "../../utils/helpers";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-function CategoryForm({formik, isUpdate = false }) {
+function BudgetForm({formik, isUpdate = false}) {
   const outcomeCategories = useSelector((state) => state.category.outcomeCategories);
   const [selectedOptionCategory, setSelectedOptionCategory] = useState(null);
 
@@ -12,6 +12,15 @@ function CategoryForm({formik, isUpdate = false }) {
     setSelectedOptionCategory(selectedOption);
     formik.setFieldValue('categoryId', selectedOption? selectedOption.id : '');
   };
+
+  useEffect(() => {
+    if(selectedOptionCategory == null && formik.values.categoryId) {
+      console.log("xxxx")
+      setSelectedOptionCategory(
+          outcomeCategories.find((c) => c.id === formik.values.categoryId)
+      );
+    }
+  })
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -84,6 +93,7 @@ function CategoryForm({formik, isUpdate = false }) {
                 id="currency"
                 onChange={formik.handleChange}
                 value={formik.values.currency}
+                disabled={isUpdate}
                 className="form-select"
             >
               <option value="AUD">AUD - AUSTRALIAN DOLLAR</option>
@@ -126,4 +136,4 @@ function CategoryForm({formik, isUpdate = false }) {
   )
 }
 
-export default CategoryForm;
+export default BudgetForm;

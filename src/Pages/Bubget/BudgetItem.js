@@ -1,9 +1,9 @@
 import {FormattedNumber} from "react-intl";
 import {Link} from "react-router-dom";
 import BudgetDelete from "./BudgetDelete";
+import CategoryTransaction from "../Category/CategoryTransaction";
 
 function BudgetItem({budget, reload}) {
-
     return (
         <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
             <div className="d-flex align-items-center">
@@ -29,6 +29,7 @@ function BudgetItem({budget, reload}) {
                     </div>
                 </div>
                 <div className=" ps-3 text-end">
+                    <CategoryTransaction categoryId={budget.categoryId} isSmall={true}/>
                     <Link to={"/budgets/" + budget.id}
                           className="btn btn-rounded btn-outline-secondary btn-sm p-1 ms-2">
                         <span className="me-2">Sửa</span>

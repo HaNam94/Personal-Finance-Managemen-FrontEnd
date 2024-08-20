@@ -23,7 +23,7 @@ function SubCategoryItem({category, handleReload}) {
         <span className="ms-2 fs-14">{category.note}</span>
       </div>
       <div className="flex-grow-1 ps-3 text-end">
-        <CategoryTransaction categoryId={category.id} />
+        <CategoryTransaction categoryId={category.id} isSmall={true} />
 
         <Link to={"/categories/" + category.id} type="button" className="btn btn-rounded btn-outline-secondary btn-sm p-1 ms-2">
           <span className="me-2">Sửa</span>
