@@ -32,6 +32,7 @@ import {useTranslation} from "react-i18next";
 import Report from "./Pages/Report/Report";
 import Setting from "./Pages/Setting/Setting";
 import Helper from "./utils/helpers";
+import BudgetNew from "./Pages/Bubget/BudgetNew";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
                 <Route path="/wallets/:walletId" element={<WalletShow />} />
                 <Route path="/transactions" element={<Transaction />} />
                 <Route path="/budgets" element={<Budget />} />
+                <Route path="/budgets/new" element={<BudgetNew />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/reports" element={<Report />} />
                 <Route path="/setting" element={<Setting />} />

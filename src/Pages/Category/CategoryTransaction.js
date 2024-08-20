@@ -4,9 +4,11 @@ import TransactionItem from "../Transaction/TransactionItem";
 import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";
 import TransactionApi from "../../Apis/TransactionApi";
+import {useTranslation} from "react-i18next";
 
 
 function CategoryTransaction({categoryId}) {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [transactions, setTransactions] = useState([])
 
@@ -30,12 +32,12 @@ function CategoryTransaction({categoryId}) {
   return (
     <>
       <button type="button" className="btn btn-rounded btn-outline-secondary btn-sm p-2 ms-2" onClick={handleShow}>
-        <span className="me-2">Giao dịch</span>
+        <span className="me-2">{t("transaction")}</span>
         <i className="fa-solid fa-chart-line"></i>
       </button>
       <Modal show={show} onHide={handleClose} size="lg" className="modal-box-style">
         <Modal.Header closeButton>
-          <Modal.Title>Danh sách giao dịch</Modal.Title>
+          <Modal.Title>{t("listTransaction")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             {
@@ -48,7 +50,7 @@ function CategoryTransaction({categoryId}) {
             }
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" className="btn-sm" onClick={handleClose}>Đóng</Button>
+          <Button variant="secondary" className="btn-sm" onClick={handleClose}>{t("cancel")}</Button>
         </Modal.Footer>
       </Modal>
     </>

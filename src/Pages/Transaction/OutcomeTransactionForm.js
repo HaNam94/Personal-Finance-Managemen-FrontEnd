@@ -3,7 +3,9 @@ import Select from "react-select";
 import {useSelector} from "react-redux";
 import Helper from "../../utils/helpers";
 import moment from "moment/moment";
+import {useTranslation} from "react-i18next";
 function OutcomeTransactionForm({formik, closeModal}) {
+    const { t } = useTranslation();
   const selectedWalletId = useSelector((state) => state.wallet.selectedWalletId);
     const [selectedOptionCategory, setSelectedOptionCategory] = useState(null);
     const [selectedOptionWallet, setSelectedOptionWallet] = useState(null);
@@ -36,7 +38,7 @@ function OutcomeTransactionForm({formik, closeModal}) {
                 <div className="row">
                     <div className="col-6">
                         <div className="mb-3">
-                            <label>Số tiền</label>
+                        <label>{t("amount")}</label>
                             <input
                                 className="form-control"
                                 type="number"
@@ -47,7 +49,7 @@ function OutcomeTransactionForm({formik, closeModal}) {
                                 <div className="text-danger">{formik.errors.amount}</div> : null}
                         </div>
                         <div className="mb-3">
-                            <label>Ghi chú</label>
+                        <label>{t("note")}</label>
                             <input
                                 className="form-control"
                                 type="text"
@@ -58,7 +60,7 @@ function OutcomeTransactionForm({formik, closeModal}) {
                                 <div className="text-danger">{formik.errors.note}</div> : null}
                         </div>
                         <div className="mb-3">
-                            <label>Ngày chi</label>
+                        <label>{t("transactionDate")}</label>
                             <input
                                 className="form-control"
                                 type="date"
@@ -73,7 +75,7 @@ function OutcomeTransactionForm({formik, closeModal}) {
                     </div>
                     <div className="col-6">
                         <div className="mb-3">
-                            <label>Loại giao dịch</label>
+                        <label>{t("transactionType")}</label>
                             <Select
 
                                 defaultValue={0}
@@ -91,7 +93,7 @@ function OutcomeTransactionForm({formik, closeModal}) {
                                 <div className="text-danger">{formik.errors.categoryId}</div> : null}
                         </div>
                         <div className="mb-3">
-                            <label>Ví tiền</label>
+                        <label>{t("wallet")}</label>
                             <Select
                                 defaultValue={0}
                                 onChange={handleSelectWalletChange}
@@ -109,9 +111,9 @@ function OutcomeTransactionForm({formik, closeModal}) {
 
                     </div>
                     <div className="text-end">
-                        <button className="btn btn-secondary btn-sm" type="button" onClick={closeModal}>Hủy</button>
+                        <button className="btn btn-secondary btn-sm" type="button" onClick={closeModal}>{t("cancel")}</button>
                         <button type="submit" className="btn btn-success mx-2 px-4 btn-sm">
-                            Thêm
+                        {t("add")}
                         </button>
                     </div>
                 </div>

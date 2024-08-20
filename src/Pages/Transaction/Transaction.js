@@ -12,13 +12,15 @@ import DateRangePicker from "react-bootstrap-daterangepicker";
 import moment from "moment";
 import {useSelector} from "react-redux";
 import Select from "react-select";
+import {useTranslation} from "react-i18next";
 
 
 function Transaction() {
+    const {t} = useTranslation();
     const [transactions, setTransactions] = useState(null);
     const [categoryType, setCategoryType] = useState(2);
-    const [category, setCategory] = useState({id: '', categoryName: 'Phân loại', icon: "icon_000"});
-    const [wallet, setWallet] = useState({id: '', walletName: 'Ví tiền', icon: "icon_000"});
+    const [category, setCategory] = useState({id: '', categoryName: t("category"), icon: "icon_000"});
+    const [wallet, setWallet] = useState({id: '', walletName: t("wallet"), icon: "icon_000"});
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
     const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
@@ -128,6 +130,7 @@ function Transaction() {
             );
         })
     }
+
     return (
         <div>
             <div className="d-flex flex-wrap align-items-center mb-3">
@@ -136,17 +139,17 @@ function Transaction() {
                         <ul className="nav nav-tabs" role="tablist">
                             <li className="nav-item">
                                 <button className={categoryType === 2 ? "nav-link active" : "nav-link"}
-                                        onClick={() => handleTypeChange(2)}>Tất cả
+                                        onClick={() => handleTypeChange(2)}>{t("all")}
                                 </button>
                             </li>
                             <li className="nav-item">
                                 <button className={categoryType === 1 ? "nav-link active" : "nav-link"}
-                                        onClick={() => handleTypeChange(1)}>Thu
+                                        onClick={() => handleTypeChange(1)}>{t("revenue")}
                                 </button>
                             </li>
                             <li className="nav-item">
                                 <button className={categoryType === 0 ? "nav-link active" : "nav-link"}
-                                        onClick={() => handleTypeChange(0)}>Chi
+                                        onClick={() => handleTypeChange(0)}>{t("expenditure")}
                                 </button>
                             </li>
                         </ul>
@@ -158,7 +161,6 @@ function Transaction() {
                             locale: {
                                 format: 'DD/MM/YYYY',
                             },
-
                         }}
                         onApply={handleApplyDate}
                     >
@@ -180,7 +182,7 @@ function Transaction() {
                             getOptionValue={(option) => option.id}
                             getOptionLabel={(option) => option.categoryName}
                             options={[
-                                {id: '', categoryName: 'Phân loại', icon: "icon_000"},
+                                {id: '', categoryName: t("category"), icon: "icon_000"},
                                 ...categories,
                             ]}
                             components={{
@@ -198,7 +200,7 @@ function Transaction() {
                             getOptionValue={(option) => option.id}
                             getOptionLabel={(option) => option.walletName}
                             options={[
-                                {id: '', walletName: 'Ví tiền', icon: "icon_000"},
+                                {id: '', walletName: t("wallet"), icon: "icon_000"},
                                 ...wallets,
                             ]}
                             components={{
@@ -241,7 +243,6 @@ function Transaction() {
             </div>
         </div>)
 }
-
 
 
 export default Transaction;

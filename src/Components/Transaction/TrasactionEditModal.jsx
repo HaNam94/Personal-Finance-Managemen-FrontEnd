@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchWallets} from "../../Redux/wallet/walletSlice";
 import moment from "moment/moment";
+import {useTranslation} from "react-i18next";
 
 
 const validationSchema = Yup.object({
@@ -18,6 +19,7 @@ const validationSchema = Yup.object({
     walletId: Yup.number().required("Không đuc để trông")
 })
 function TransactionEditModal({transactionId}){
+    const { t } = useTranslation();
     const [show, setShow] = useState(false);
     const wallets = useSelector((state) => state.wallet.wallets);
     const [selectedOptionCategory, setSelectedOptionCategory] = useState(null);
@@ -92,7 +94,7 @@ function TransactionEditModal({transactionId}){
     return (
         <>
                 <button type="button" className="btn btn-rounded btn-outline-secondary btn-sm p-2" onClick={handleShow}>
-                    <span className="me-2">Sửa</span>
+                    <span className="me-2">{t("edit")}</span>
                     <i className="fa-solid fa-pen-to-square"></i>
                 </button>
             <Modal show={show} onHide={handleClose} size="lg" className="modal-box-style">
@@ -104,7 +106,7 @@ function TransactionEditModal({transactionId}){
                                     <div className="row">
                                         <div className="col-6">
                                             <div className="mb-3">
-                                                <label>Số tiền</label>
+                                                <label>{t("amount")}</label>
                                                 <input
                                                     className="form-control"
                                                     type="number"
@@ -115,7 +117,7 @@ function TransactionEditModal({transactionId}){
                                                     <div className="text-danger">{formik.errors.amount}</div> : null}
                                             </div>
                                             <div className="mb-3">
-                                                <label>Ghi chú</label>
+                                                <label>{t("note")}</label>
                                                 <input
                                                     className="form-control"
                                                     type="text"
@@ -126,7 +128,7 @@ function TransactionEditModal({transactionId}){
                                                     <div className="text-danger">{formik.errors.note}</div> : null}
                                             </div>
                                             <div className="mb-3">
-                                                <label>Ngày thu</label>
+                                                <label>{t("transactionDate")}</label>
                                                 <input
                                                     className="form-control"
                                                     type="date"
@@ -141,7 +143,7 @@ function TransactionEditModal({transactionId}){
                                         </div>
                                         <div className="col-6">
                                             <div className="mb-3">
-                                                <label>Loại giao dịch</label>
+                                                <label>{t("transactionType")}</label>
                                                 <Select
                                                     onChange={handleSelectCategoryChange}
                                                     name="categoryId"
@@ -155,7 +157,7 @@ function TransactionEditModal({transactionId}){
 
                                             </div>
                                             <div className="mb-3">
-                                                <label>Ví tiền</label>
+                                                <label>{t("wallet")}</label>
                                                 <Select
                                                     onChange={handleSelectWalletChange}
                                                     name="walletId"
@@ -171,10 +173,10 @@ function TransactionEditModal({transactionId}){
                                         </div>
                                         <div className="text-end">
                                             <button className="btn btn-secondary btn-sm" type="button"
-                                                   onClick={handleClose}>Hủy
+                                                   onClick={handleClose}>{t("cancel")}
                                             </button>
                                             <button type="submit" className="btn btn-success mx-2 px-4 btn-sm">
-                                                Update
+                                            {t("edit")}
                                             </button>
                                         </div>
                                     </div>

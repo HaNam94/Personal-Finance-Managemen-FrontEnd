@@ -1,13 +1,14 @@
 import Helper from "../../utils/helpers";
+import {useTranslation} from "react-i18next";
 
 function ProfileForm({formik}) {
-
+  const { t } = useTranslation();
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="row">
         <div className="col-6">
           <div className="mb-3">
-            <label>Họ và tên</label>
+            <label>{t("fullName")}</label>
             <input
               className="form-control"
               id="username"
@@ -20,7 +21,7 @@ function ProfileForm({formik}) {
               <div className="text-danger">{formik.errors.username}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Email</label>
+            <label>{t("email")}</label>
             <input
               className="form-control disabled"
               id="email"
@@ -32,7 +33,7 @@ function ProfileForm({formik}) {
         </div>
         <div className="col-6">
           <div className="mb-3">
-            <label>Số điên thoại</label>
+            <label>{t("phoneNumber")}</label>
             <input
               className="form-control"
               id="phone"
@@ -45,7 +46,7 @@ function ProfileForm({formik}) {
               <div className="text-danger">{formik.errors.phone}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Ngày sinh</label>
+            <label>{t("dob")}</label>
             <input
               className="form-control"
               id="dob"
@@ -63,7 +64,7 @@ function ProfileForm({formik}) {
 
 
       <div className="text-end">
-        <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>Cập Nhật
+        <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>{t("edit")}
         </button>
 
       </div>

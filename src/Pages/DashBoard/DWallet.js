@@ -13,11 +13,8 @@ function DWallet() {
   const wallets = useSelector((state) => state.wallet.wallets);
   const { t } = useTranslation();
 
-
-
   const [exchangeRates, setExchangeRates] = useState(null);
   const [loading, setLoading] = useState(true);
-
 
   const { convertCurrency } = useCurrencyConverter();
   const status = useSelector((state) => state.exchangeRates.status);

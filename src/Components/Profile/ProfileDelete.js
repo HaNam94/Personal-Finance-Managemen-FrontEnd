@@ -6,9 +6,10 @@ import {logout} from "../../Redux/auth/authSlice";
 import Helper from "../../utils/helpers";
 import Lottie from "lottie-react";
 import AniWaning from "../../LottieData/warning.json";
-
+import {useTranslation} from "react-i18next";
 
 function ProfileDelete() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -30,14 +31,14 @@ function ProfileDelete() {
   return (
     <>
       <Button className="btn-sm ms-2" variant="danger" onClick={handleShow}>
-        Xóa tài khoản
+      {t("deleteAccount")}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Body>
           <div className="text-center">
-          <h4>Bạn có chắc chắn muốn xóa tài khoản không?</h4>
-          <p>Tất cả dữ liệu liên quan sẽ bị xóa, không thể khôi phục lại!</p>
+          <h4>{t("confirmDelete1")}</h4>
+          <p>{t("confirmDelete2")}</p>
           <div className="w-25 mx-auto">
                 <Lottie animationData={AniWaning} />
               </div>
@@ -46,10 +47,10 @@ function ProfileDelete() {
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn-sm" variant="secondary" onClick={handleClose}>
-            Hủy
+          {t("cancel")}
           </Button>
           <Button className="btn-sm" variant="success" onClick={handleDelete}>
-            Xác Nhận Xóa
+          {t("delete")}
           </Button>
         </Modal.Footer>
       </Modal>

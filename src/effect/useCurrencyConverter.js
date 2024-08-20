@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
 
 const useCurrencyConverter = () => {
-    const resultCurrency = useSelector((state) => state.auth.user.setting.currency);
+    const rCurrency = useSelector((state) => state.auth.user.setting.currency);
     const currencyData = useSelector((state) => state.exchangeRates.exchangeRates);
 
-    const convertCurrency = (amount, amountCurrency) => {
+    const convertCurrency = (amount, amountCurrency, resultCurrency) => {
+        resultCurrency ||= rCurrency;
         if (resultCurrency === amountCurrency) {
             return amount;
         }

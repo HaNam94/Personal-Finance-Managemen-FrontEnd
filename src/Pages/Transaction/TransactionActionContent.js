@@ -1,7 +1,9 @@
 import {useState} from "react";
 import TransactionFormik from "./TransactionFormik";
+import {useTranslation} from "react-i18next";
 
 function TransactionActionContent({closeModal, actionType = "income"}) {
+  const { t } = useTranslation();
   const [transactionType, setTransactionType] = useState(actionType);
 
   const handleTransactionTypeChange = (type) => {
@@ -18,7 +20,7 @@ function TransactionActionContent({closeModal, actionType = "income"}) {
                 className={`nav-link ${transactionType === "income" ? "active" : ""}`}
                 href="#"
                 onClick={() => handleTransactionTypeChange("income")}
-              >Thêm Khoản Thu</a>
+              >{t("addIncome")}</a>
             </li>
 
             <li className="nav-item">
@@ -26,7 +28,7 @@ function TransactionActionContent({closeModal, actionType = "income"}) {
               className={`nav-link ${transactionType === "outcome" ? "active" : ""}`}
               href="#"
               onClick={() => handleTransactionTypeChange("outcome")}
-            >Thêm Khoản Chi</a>
+            >{t("addExpense")}</a>
             </li>
 
             <li className="nav-item">
@@ -34,7 +36,7 @@ function TransactionActionContent({closeModal, actionType = "income"}) {
                 className={`nav-link ${transactionType === "transfer" ? "active" : ""}`}
                 href="#"
                 onClick={() => handleTransactionTypeChange("transfer")}
-              >Chuyển tiền</a>
+              >{t("pay")}</a>
             </li>
           </ul>
         </div>

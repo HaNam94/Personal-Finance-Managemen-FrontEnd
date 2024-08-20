@@ -2,8 +2,10 @@ import {Button, Modal} from "react-bootstrap";
 import ProfileUpdatePasswordForm from "../../Components/Profile/ProfileUpdatePasswordForm";
 import {useState} from "react";
 import TransactionActionContent from "./TransactionActionContent";
+import {useTranslation} from "react-i18next";
 
 function TransactionActionModal({reload}) {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -11,7 +13,7 @@ function TransactionActionModal({reload}) {
   return (
     <div className="main-action">
       <Button className="btn-sm ms-2" variant="primary" onClick={handleShow}>
-        <span className="mx-2">Thêm Giao Dịch</span>
+        <span className="mx-2">{t("addTransaction")}</span>
         <i className="fa-solid fa-plus"></i>
       </Button>
       <Modal show={show} onHide={handleClose} size="lg" className="modal-box-style">
