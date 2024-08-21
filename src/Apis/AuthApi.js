@@ -17,6 +17,13 @@ class AuthApi {
       }
     });
   }
+  static resetPassword(data) {
+    return axiosInstance.post('/api/v1/public/reset-password', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  }
 
   static async verifyAccount(param) {
     return axiosInstance.post('/api/v1/public/verify', param);
