@@ -14,6 +14,7 @@ import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";
 import {fetchWallets} from "../../Redux/wallet/walletSlice";
 import {useTranslation} from "react-i18next";
+import WalletArchive from "../../Components/Wallet/WalletArchive";
 
 const validationSchema = Yup.object({
   amount: Yup.number().min(0, 'Số tiền hiện tại phải lớn hơn 0').max(10000000000, "Số tiền quá lớn"),
@@ -111,7 +112,7 @@ function WalletShow() {
         dispatch(fetchWallets());
         navigate("/wallets");
       } catch (error) {
-        Helper.toastError('Cập nhật ví thất bại!');
+        Helper.parseError(error);
       } finally {
         setSubmitting(false);
       }
@@ -119,6 +120,17 @@ function WalletShow() {
     validateOnMount: false
   });
 
+  const handleArchive = async () => {
+    try {
+      await WalletApi.changeStatus(walletId);
+      Helper.toastSuccess('Lưu trữ ví thành công!');
+      dispatch(fetchWallets());
+      navigate("/wallets");
+    } catch (error) {
+      Helper.parseError(error);
+    }
+  }
+  console.log(wallet)
   return (
     <>
       <div className="card">
@@ -131,7 +143,8 @@ function WalletShow() {
                 formik={formik}
                 isUpdate={true}
                 deleteBtn={isOwner ? <WalletDelete handleDelete={handleDelete} /> : null}
-                isReadOnly={!isOwner}
+                archiveBtn={isOwner ? <WalletArchive handleArchive={handleArchive} walletStatus={wallet.walletStatus} /> : null}
+                isReadOnly={!isOwner || !wallet.walletStatus}
               />
             )
           }

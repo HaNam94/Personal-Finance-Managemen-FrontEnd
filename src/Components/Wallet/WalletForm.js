@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
-function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = false}) {
+function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = false, archiveBtn = <></>}) {
   const { t } = useTranslation();
   const currencyOptions = ["VND", "USD"].map(el => {
     return (
@@ -107,6 +107,9 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
       <div className="d-flex align-items-center justify-content-between">
         <div>
           {deleteBtn}
+          {
+            archiveBtn
+          }
         </div>
 
         <div>

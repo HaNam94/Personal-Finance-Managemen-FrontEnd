@@ -24,7 +24,7 @@ export const fetchWallets = createAsyncThunk(
 
       // Filter wallets where the user is an "OWNER"
       const ownerWallets = wallets.filter(wallet =>
-          wallet.walletRoles.some(role => role.userId === userId && role.role === 'OWNER')
+          wallet.walletRoles.some(role => role.userId === userId && role.role === 'OWNER') && wallet.walletStatus
       );
 
       return { wallets, ownerWallets };

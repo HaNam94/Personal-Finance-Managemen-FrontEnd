@@ -40,6 +40,10 @@ class WalletApi {
   static async transferMoney(fromWalletId, toWalletId, amoumt){
     return axiosInstance.post(`/api/v1/wallets/transfer/${fromWalletId}/${toWalletId}/${amoumt}`);
   }
+
+  static async changeStatus(walletId) {
+    return axiosInstance.put(`/api/v1/wallets/${walletId}/change-status`);
+  }
 }
 
 export default WalletApi;
