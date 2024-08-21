@@ -122,14 +122,18 @@ function WalletShow() {
 
   const handleArchive = async () => {
     try {
-      await WalletApi.changeStatus(walletId);
-      Helper.toastSuccess('Lưu trữ ví thành công!');
-      dispatch(fetchWallets());
-      navigate("/wallets");
+        await WalletApi.changeStatus(walletId);
+        if (wallet.walletStatus) {
+            Helper.toastSuccess('Lưu trữ ví thành công!');
+        } else {
+            Helper.toastSuccess('Khôi phục ví thành công!');
+        }
+        dispatch(fetchWallets());
+        navigate("/wallets");
     } catch (error) {
-      Helper.parseError(error);
+        Helper.parseError(error);
     }
-  }
+};
   console.log(wallet)
   return (
     <>
@@ -150,28 +154,28 @@ function WalletShow() {
           }
         </div>
       </div>
-      {isOwner && (
-        <div className="card mb-4">
-          <div className="card-body">
-            <div className="d-flex align-items-center justify-content-between mb-4">
-              <h5>{t("listUserShareWallet")}</h5>
-              <ShareWalletForms walletId={walletId} handleSetNewShare={setSharedUsers}/>
-            </div>
-            {sharedUsers.length > 0 ? (
-              <SharedUserList
-                sharedUsers={sharedUsers}
-                walletId={walletId}
-                onUpdateRole={handleUpdateRole}
-                handleUnshare={handleUnshare}
-              />
-            ) : (
-              <div className="w-25 mx-auto">
-                <Lottie animationData={AniEmpty} />
-              </div>
-            )}
-          </div>
+      {isOwner && wallet.walletStatus && (
+  <div className="card mb-4">
+    <div className="card-body">
+      <div className="d-flex align-items-center justify-content-between mb-4">
+        <h5>{t("listUserShareWallet")}</h5>
+        <ShareWalletForms walletId={walletId} handleSetNewShare={setSharedUsers} />
+      </div>
+      {sharedUsers.length > 0 ? (
+        <SharedUserList
+          sharedUsers={sharedUsers}
+          walletId={walletId}
+          onUpdateRole={handleUpdateRole}
+          handleUnshare={handleUnshare}
+        />
+      ) : (
+        <div className="w-25 mx-auto">
+          <Lottie animationData={AniEmpty} />
         </div>
       )}
+    </div>
+  </div>
+)}
     </>
   );
 }

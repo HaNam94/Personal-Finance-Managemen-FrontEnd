@@ -104,14 +104,19 @@ const resources = {
       "addNewBudget": "Add New Budget",
       "amountMoney": "Amount Money",
       "day": "Day",
-      "synthetic": "Synthetic", 
+      "synthetic": "Synthetic",
       "spent": "Spent",
       "endMonth": "End of Month",
       "confirmDeleteBudget": "Are you sure you want to delete this budget?",
       "remaining": "Remaining",
       "nameBudget": "Budget Name",
       "chooseType": "Choose Category",
-      "describe": "Describe"
+      "describe": "Describe",
+      "storage": "Store wallet",
+      "restore": "Restore wallet",
+      "youWant": "Are you sure you want to",
+      "walletin": " this wallet?",
+      "export": "Export",
     }
   },
   vi: {
@@ -216,14 +221,19 @@ const resources = {
       "addNewBudget": "Tạo budget mới",
       "amountMoney": "Số tiền có thể chi",
       "day": "ngày",
-      "synthetic": "Tổng", 
+      "synthetic": "Tổng",
       "spent": "Đã chi",
       "endMonth": "Cuối tháng",
-      "confirmDeleteBudget":"Bạn có chắc chắn muốn ngân sách ",
-      "remaining":"Còn lại",
-      "nameBudget":"Tên ngân sách",
-      "chooseType":"Chọn Phân Loại",
-      "describe":"mô tả",
+      "confirmDeleteBudget": "Bạn có chắc chắn muốn ngân sách ",
+      "remaining": "Còn lại",
+      "nameBudget": "Tên ngân sách",
+      "chooseType": "Chọn Phân Loại",
+      "describe": "mô tả",
+      "storage": "Lưu trữ ví",
+      "restore": "Khôi phục ví",
+      "youWant": "Bạn có chắc chắn muốn",
+      "walletin": " ví này không?",
+      "export": "Xuất",
     }
   },
   kr: {
@@ -335,8 +345,12 @@ const resources = {
       "remaining": "남은 금액",
       "nameBudget": "예산 이름",
       "chooseType": "카테고리 선택",
-      "describe": "설명"
-      
+      "describe": "설명",
+      "storage": "지갑 저장",
+      "restore": "지갑 복원",
+      "youWant": "정말로 하시겠습니까",
+      "walletin": " 이 지갑?",
+      "export": "내보내기"
     }
   },
   cn: {
@@ -448,8 +462,12 @@ const resources = {
       "remaining": "剩余金额",
       "nameBudget": "预算名称",
       "chooseType": "选择类别",
-      "describe": "描述"
-
+      "describe": "描述",
+      "storage": "存储钱包",
+      "restore": "恢复钱包",
+      "youWant": "您确定要",
+      "walletin": " 这个钱包吗？",
+      "export": "导出"
     }
   }
 };

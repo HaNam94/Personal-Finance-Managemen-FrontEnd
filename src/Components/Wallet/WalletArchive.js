@@ -14,25 +14,25 @@ function WalletArchive({handleArchive, walletStatus}) {
             <Button className="btn-sm ms-2 warning" variant="warning" onClick={handleShow}>
                 {
                     walletStatus ?
-                        "Lưu trữ ví" : "Khôi phục ví"
+                        t("storage") : t("restore")
                 }
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Body>
-                    <h3>Bạn có chắc chắn muốn {
+                    <h3>{ t("youWant")} {
                         walletStatus ?
-                            "lưu trữ" : "khôi phục"
-                    } ví này không?</h3>
+                        t("storage") : t("restore")
+                    } { t("walletin")}</h3>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn-sm" variant="secondary" onClick={handleClose}>
-                        Hủy
+                    {t("cancel")}
                     </Button>
                     <Button className="btn-sm" variant="success" onClick={handleArchive}>
-                        Xác Nhận {
+                         {
                         walletStatus ?
-                            "lưu trữ" : "khôi phục"
+                        t("storage") : t("restore")
                     }
                     </Button>
                 </Modal.Footer>
