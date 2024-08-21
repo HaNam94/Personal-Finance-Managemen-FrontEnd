@@ -71,7 +71,7 @@ class Helper {
   }
 
   static imageHostUrl(imagePath) {
-    return "http://localhost:8080/images/" + imagePath;
+    return "https://api.qnsk.site/images/" + imagePath;
   }
 
   static showApiError(data) {
