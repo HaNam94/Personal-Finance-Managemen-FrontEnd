@@ -40,7 +40,6 @@ const resources = {
       "categoryName": "Category Name",
       "categoryIcon": "Category Icon",
       "fullName": "Full Name",
-      "email": "Email",
       "phoneNumber": "Phone Number",
       "dob": "Date of Birth",
       "freeAccount": "Free Account, Upgrade Now!",
@@ -101,7 +100,18 @@ const resources = {
       "formartMoney": "Money Display Format",
       "confirmLogout": "Confirm Logout",
       "logout": "Logout",
-      "title": "Money is not everything, but it is an important part of our lives."
+      "title": "Money is not everything, but it is an important part of our lives.",
+      "addNewBudget": "Add New Budget",
+      "amountMoney": "Amount Money",
+      "day": "Day",
+      "synthetic": "Synthetic", 
+      "spent": "Spent",
+      "endMonth": "End of Month",
+      "confirmDeleteBudget": "Are you sure you want to delete this budget?",
+      "remaining": "Remaining",
+      "nameBudget": "Budget Name",
+      "chooseType": "Choose Category",
+      "describe": "Describe"
     }
   },
   vi: {
@@ -142,7 +152,6 @@ const resources = {
       "categoryName": "Tên phân loại",
       "categoryIcon": "Icon phân loại",
       "fullName": "Họ và tên",
-      "email": "Email",
       "phoneNumber": "Số điện thoại",
       "dob": "Ngày sinh",
       "freeAccount": "Tài khoản miễn phí nâng cấp ngay!",
@@ -203,7 +212,18 @@ const resources = {
       "formartMoney": "Định dạng hiển thị tiền",
       "confirmLogout": "Xác Nhận Đăng Xuất",
       "logout": "Đăng Xuất",
-      "title": "Tiền không phải là tất cả, nhưng nó là một phần quan trọng trong cuộc sống của chúng ta."
+      "title": "Tiền không phải là tất cả, nhưng nó là một phần quan trọng trong cuộc sống của chúng ta.",
+      "addNewBudget": "Tạo budget mới",
+      "amountMoney": "Số tiền có thể chi",
+      "day": "ngày",
+      "synthetic": "Tổng", 
+      "spent": "Đã chi",
+      "endMonth": "Cuối tháng",
+      "confirmDeleteBudget":"Bạn có chắc chắn muốn ngân sách ",
+      "remaining":"Còn lại",
+      "nameBudget":"Tên ngân sách",
+      "chooseType":"Chọn Phân Loại",
+      "describe":"mô tả",
     }
   },
   kr: {
@@ -244,7 +264,6 @@ const resources = {
       "categoryName": "카테고리 이름",
       "categoryIcon": "카테고리 아이콘",
       "fullName": "이름",
-      "email": "이메일",
       "phoneNumber": "전화번호",
       "dob": "생년월일",
       "freeAccount": "무료 계정, 지금 업그레이드하세요!",
@@ -305,7 +324,19 @@ const resources = {
       "formartMoney": "화폐 형식",
       "confirmLogout": "로그아웃 확인",
       "logout": "로그아웃",
-      "title": "돈은 전부가 아니지만, 우리 삶의 중요한 부분입니다."
+      "title": "돈은 전부가 아니지만, 우리 삶의 중요한 부분입니다.",
+      "addNewBudget": "새 예산 추가",
+      "amountMoney": "금액",
+      "day": "일",
+      "synthetic": "합성",
+      "spent": "지출됨",
+      "endMonth": "월말",
+      "confirmDeleteBudget": "이 예산을 삭제하시겠습니까?",
+      "remaining": "남은 금액",
+      "nameBudget": "예산 이름",
+      "chooseType": "카테고리 선택",
+      "describe": "설명"
+      
     }
   },
   cn: {
@@ -346,7 +377,6 @@ const resources = {
       "categoryName": "类别名称",
       "categoryIcon": "类别图标",
       "fullName": "姓名",
-      "email": "电子邮件",
       "phoneNumber": "电话号码",
       "dob": "出生日期",
       "freeAccount": "免费账户，立即升级！",
@@ -407,7 +437,19 @@ const resources = {
       "formartMoney": "货币显示格式",
       "confirmLogout": "确认退出登录",
       "logout": "退出登录",
-      "title": "金钱不是一切，但它是我们生活的重要组成部分。"
+      "title": "金钱不是一切，但它是我们生活的重要组成部分。",
+      "addNewBudget": "新增预算",
+      "amountMoney": "金额",
+      "day": "日",
+      "synthetic": "综合",
+      "spent": "已花费",
+      "endMonth": "月底",
+      "confirmDeleteBudget": "您确定要删除此预算吗？",
+      "remaining": "剩余金额",
+      "nameBudget": "预算名称",
+      "chooseType": "选择类别",
+      "describe": "描述"
+
     }
   }
 };

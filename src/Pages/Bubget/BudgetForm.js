@@ -3,8 +3,10 @@ import {useSelector} from "react-redux";
 import Select from "react-select";
 import Helper from "../../utils/helpers";
 import React, {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 function BudgetForm({formik, isUpdate = false}) {
+  const { t } = useTranslation();
   const outcomeCategories = useSelector((state) => state.category.outcomeCategories);
   const [selectedOptionCategory, setSelectedOptionCategory] = useState(null);
 
@@ -27,7 +29,7 @@ function BudgetForm({formik, isUpdate = false}) {
       <div className="row">
         <div className="col-6">
           <div className="mb-3">
-            <label>Tên Ngân Sách</label>
+            <label>{t("nameBudget")}</label>
             <input
                 className="form-control"
                 id="budgetName"
@@ -41,7 +43,7 @@ function BudgetForm({formik, isUpdate = false}) {
           </div>
 
           <div className="mb-3">
-            <label>Ngân sách</label>
+            <label>{t("budget")}</label>
             <input
                 className="form-control"
                 id="budgetAmount"
@@ -54,7 +56,7 @@ function BudgetForm({formik, isUpdate = false}) {
                 <div className="text-danger">{formik.errors.budgetAmount}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Mô tả</label>
+            <label>{t("describe")}</label>
             <input
                 className="form-control"
                 id="budgetDescription"
@@ -69,7 +71,7 @@ function BudgetForm({formik, isUpdate = false}) {
         </div>
         <div className="col-6">
           <div className="mb-3">
-            <label>Chọn Phân Loại</label>
+            <label>{t("chooseType")}</label>
             <Select
 
                 defaultValue={0}
@@ -87,7 +89,7 @@ function BudgetForm({formik, isUpdate = false}) {
                 <div className="text-danger">{formik.errors.categoryId}</div> : null}
           </div>
           <div className="mb-3">
-            <label>Tiền tệ</label>
+            <label>{t("typeMoney")}</label>
             <select
                 name="currency"
                 id="currency"
@@ -127,9 +129,9 @@ function BudgetForm({formik, isUpdate = false}) {
 
 
       <div className="text-end">
-        <Link to={"/budgets"} className="btn btn-secondary btn-sm">Hủy</Link>
+        <Link to={"/budgets"} className="btn btn-secondary btn-sm">{t("cancel")}</Link>
         <button type="submit" className="btn btn-success mx-2 px-4 btn-sm"
-                disabled={formik.isSubmitting}>{isUpdate ? "Update" : "New"}
+                disabled={formik.isSubmitting}>{isUpdate ? t("update") : t("add")}
         </button>
       </div>
     </form>
