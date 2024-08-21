@@ -69,7 +69,7 @@ function Profile() {
     <div>
       <div className="row">
 
-        <div className="col-8">
+        <div className="col-12 col-lg-8">
           <div className="card">
             <div className="card-body">
               {
@@ -83,7 +83,7 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-12 col-lg-4">
           <div className="card">
             <div className="card-body">
               {

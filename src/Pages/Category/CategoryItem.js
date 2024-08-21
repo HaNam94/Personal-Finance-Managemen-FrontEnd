@@ -10,7 +10,7 @@ function CategoryItem({category, handleReload}) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
+    <div className="bg-white shadow-sm p-3 rounded-3  mb-2 budget-item">
       <div className="d-flex align-items-center">
         <div className="border-end pe-3">
           <span className={`badge light badge-${category.categoryType === 1 ? "success" : "danger"}`}>{category.categoryType === 1 ? "Thu" : "Chi"}</span>

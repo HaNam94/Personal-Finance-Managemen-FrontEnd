@@ -6,7 +6,7 @@ function ProfileForm({formik}) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <label>{t("fullName")}</label>
             <input
@@ -31,7 +31,7 @@ function ProfileForm({formik}) {
             />
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <label>{t("phoneNumber")}</label>
             <input

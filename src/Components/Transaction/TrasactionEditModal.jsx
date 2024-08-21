@@ -104,7 +104,7 @@ function TransactionEditModal({transactionId}){
                             <div>
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className="row">
-                                        <div className="col-6">
+                                        <div className="col-12 col-lg-6">
                                             <div className="mb-3">
                                                 <label>{t("amount")}</label>
                                                 <input
@@ -141,7 +141,7 @@ function TransactionEditModal({transactionId}){
                                                     <div className="text-danger">{formik.errors.datetime}</div> : null}
                                             </div>
                                         </div>
-                                        <div className="col-6">
+                                        <div className="col-12 col-lg-6">
                                             <div className="mb-3">
                                                 <label>{t("transactionType")}</label>
                                                 <Select

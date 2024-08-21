@@ -8,9 +8,11 @@
         bottom: 5px;
         right: 5px;
         left: 5px;
-        height: 55px;
+        height: 60px;
         top: auto;
         margin: 0;
+        background-color: white;
+        border-color: #f3d3d6;
     }
     .nav-header {
         display: none;
@@ -57,5 +59,54 @@
 
     .form-wallet >div {
         margin-bottom: 10px;
+    }
+
+    .wrapper-search {
+        flex-direction: column;
+    }
+
+    .wrapper-search >div {
+        flex-direction: column;
+        margin-left: 0 !important;
+        width: 100%;
+    }
+    .wrapper-search >div >div{
+        margin-bottom: 5px;
+        width: 100%;
+        margin-right: 0!important;
+    }
+
+    .export-btn, .main-action button {
+        width: 100%;
+        margin: 10px 0 0 0 !important;
+    }
+    .transaction-item {
+        flex-wrap: wrap;
+    }
+    .transaction-item >div {
+        border: none!important;
+        padding: 0 !important;
+        margin-bottom: 5px!important;
+    }
+    .transaction-item >div:first-child, .transaction-item >div:nth-child(2), .transaction-item >div:last-child {
+        width: 100%;
+    }
+    .transaction-item >div:nth-child(3), .transaction-item >div:nth-child(4) {
+        padding-left: 8px!important;
+    }
+    .budget-item >div {
+        flex-wrap: wrap;
+    }
+    .budget-item >div >div {
+        border: none!important;
+        margin-bottom: 10px!important;
+        padding: 0 !important;
+    }
+    .budget-item >div >div:nth-child(1) {
+        margin-right: 10px;
+        margin-left: -5px;
+    }
+    .budget-item >div >div:nth-child(4), .budget-item >div >div:nth-child(3), .budget-item >div >div:nth-child(5){
+        width: 100%;
     }
 }

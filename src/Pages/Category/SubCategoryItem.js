@@ -4,7 +4,7 @@ import CategoryTransaction from "./CategoryTransaction";
 
 function SubCategoryItem({category, handleReload}) {
   return (
-    <div className="bg-white shadow-sm p-3 rounded-3  mb-2 ms-4">
+    <div className="bg-white shadow-sm p-3 rounded-3  mb-2 ms-4 budget-item">
     <div className="d-flex align-items-center">
       <div className="pe-3">
         <i className="fa-solid fa-angles-right"></i>
@@ -29,7 +29,7 @@ function SubCategoryItem({category, handleReload}) {
           <span className="me-2">Sửa</span>
           <i className="fa-solid fa-pen-to-square"></i>
         </Link>
-        <CategoryDelete category={category} handleReload={handleReload}/>
+        <CategoryDelete category={category} handleReload={handleReload} isSmall={true} />
       </div>
     </div>
     </div>

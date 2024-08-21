@@ -19,7 +19,7 @@ function Upgrade() {
       {orbMemo}
       <div className="container h-100">
         <div className="row justify-content-center h-100 align-items-center">
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="authincation-content px-3 text-center py-5">
               <div className="d-flex align-items-center justify-content-center">
                 <Logo width={50} simple={true}/>

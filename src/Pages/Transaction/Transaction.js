@@ -162,7 +162,7 @@ function Transaction() {
 
   return (
       <div>
-          <div className="d-flex flex-wrap align-items-center mb-3">
+          <div className="d-flex flex-wrap align-items-center mb-3 wrapper-search">
               <div className="me-auto d-flex">
                   <div className="card-tabs style-1 mt-3 mt-sm-0 me-3">
                       <ul className="nav nav-tabs" role="tablist">
@@ -235,26 +235,29 @@ function Transaction() {
                   </div>
               </div>
 
-              <Button className="btn-sm ms-2 ps-1 pe-2" variant="secondary" onClick={() => {
-                  exportToFile("xlsx")
-              }}>
+              <div>
+                  <Button className="btn-sm ms-2 ps-1 pe-2 export-btn" variant="secondary" onClick={() => {
+                      exportToFile("xlsx")
+                  }}>
                   <span className="mx-2">
                                 Xuất
                   </span>
-                  {
-                      exportStatus ?
-                          <div className="spinner-border spinner-border-sm" role="status">
-                              <span className="visually-hidden">Loading...</span>
-                          </div>
-                          :
-                          <>
+                      {
+                          exportStatus ?
+                              <div className="spinner-border spinner-border-sm" role="status">
+                                  <span className="visually-hidden">Loading...</span>
+                              </div>
+                              :
+                              <>
 
-                              <i className="fa-solid fa-arrow-up-from-bracket"></i>
-                          </>
-                  }
+                                  <i className="fa-solid fa-arrow-up-from-bracket"></i>
+                              </>
+                      }
 
-              </Button>
-              <TransactionActionModal/>
+                  </Button>
+                  <TransactionActionModal/>
+              </div>
+
           </div>
           <div className="row">
           <div className="col-12">

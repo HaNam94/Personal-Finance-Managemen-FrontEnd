@@ -7,7 +7,7 @@ import {useTranslation} from "react-i18next";
 function BudgetItem({budget, reload}) {
     const { t } = useTranslation();
     return (
-        <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
+        <div className="bg-white shadow-sm p-3 rounded-3  mb-2 budget-item">
             <div className="d-flex align-items-center">
                 <div className="border-end px-3">
                     <img src={`/images/icons/${budget.categoryIcon}.png`} className="img-fluid"

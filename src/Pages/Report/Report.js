@@ -109,7 +109,7 @@ function Report() {
 
     return (
         <div>
-            <div className="d-flex flex-wrap align-items-center mb-3">
+            <div className="d-flex flex-wrap align-items-center mb-3 wrapper-search">
                 <div className="ms-auto d-flex">
                     <DateRangePicker
                         initialSettings={{
@@ -170,7 +170,7 @@ function Report() {
                 </div>
             </div>
             <div className="row">
-                <div className="col-4">
+                <div className="col-12 col-lg-4">
                     <div className="card progress-card">
                         <div className="card-body d-flex">
                             <div className="me-auto">
@@ -187,7 +187,7 @@ function Report() {
                         </div>
                     </div>
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-lg-4">
                     <div className="card progress-card">
                         <div className="card-body d-flex">
                             <div className="me-auto">
@@ -208,7 +208,7 @@ function Report() {
                         </div>
                     </div>
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-lg-4">
                     <div className="card progress-card">
                         <div className="card-body d-flex">
                             <div className="me-auto">

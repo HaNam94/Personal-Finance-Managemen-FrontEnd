@@ -27,7 +27,7 @@ function BudgetForm({formik, isUpdate = false}) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <label>{t("nameBudget")}</label>
             <input
@@ -69,7 +69,7 @@ function BudgetForm({formik, isUpdate = false}) {
                 <div className="text-danger">{formik.errors.budgetDescription}</div> : null}
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <label>{t("chooseType")}</label>
             <Select

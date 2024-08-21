@@ -5,7 +5,7 @@ function SettingForm({formik}) {
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className="row">
-                <div className="col-6">
+                <div className="col-12 col-lg-6">
                     <div className="mb-3">
                         <label>{t("typeMoney")}</label>
                         <select
@@ -52,7 +52,7 @@ function SettingForm({formik}) {
                         </select>
                     </div>
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-lg-6">
                     <div className="mb-3">
                         <label>{t("formartDate")}</label>
                         <select

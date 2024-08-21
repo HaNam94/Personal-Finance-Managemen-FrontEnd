@@ -14,7 +14,7 @@ function CategoryForm({formik, isCreate = false }) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           {
             ('categoryType' in formik.values && (formik.values.parentId == null)) &&
             <div className="mb-3">
@@ -62,7 +62,7 @@ function CategoryForm({formik, isCreate = false }) {
           </div>
 
         </div>
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <div className="mb-3">
               <label>{t("categoryIcon")}</label>

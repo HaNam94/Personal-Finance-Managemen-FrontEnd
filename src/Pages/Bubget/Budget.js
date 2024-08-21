@@ -78,14 +78,14 @@ function Budget() {
           {
             budgets.length > 0 ? (
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-12 col-lg-8 order-1 order-lg-0">
                     {
                       updatedBudgetsData().map((b, index) => (
                           <BudgetItem key={b.id} budget={b} reload={setLoading} />
                       ))
                     }
                   </div>
-                  <div className="col-4">
+                  <div className="col-12 col-lg-4 order-0 order-lg-1">
                     <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
                       <div className="text-center">
                         <p className="mb-1">{t("amountMoney")}</p>
