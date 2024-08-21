@@ -191,7 +191,7 @@
 #no-support {
     display: none;
 }
-@media screen and (max-width: 1400px) {
+@media screen and (min-width: 600px) and (max-width: 1400px) {
     #root {
         display: none!important;
     }
@@ -199,5 +199,5 @@
     #no-support {
         display: block!important;
     }
-    
+
 }

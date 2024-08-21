@@ -14,7 +14,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <label>{t("nameWallet")}</label>
             <input
@@ -74,7 +74,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
               <div className="text-danger">{formik.errors.walletDescription}</div> : null}
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-lg-6">
           <div className="mb-3">
             <div className="mb-3">
               <label>{t("iconWallet")}</label>
@@ -104,7 +104,7 @@ function WalletForm({formik, isUpdate = false, deleteBtn = <></>, isReadOnly = f
         </div>
       </div>
 
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-between form-wallet">
         <div>
           {deleteBtn}
           {

@@ -7,7 +7,7 @@ import Helper from "../../utils/helpers";
 function WalletItem({ wallet, index}) {
   const user = useSelector((state) => state.auth.user);
   return (
-    <div className="col-4 position-relative invoice-wrapper">
+    <div className="col-12 col-lg-4 position-relative invoice-wrapper">
       <Link to={"/wallets/" + wallet.id} className="card card-bx p-0 invoice-card"
             style={{backgroundColor: Helper.getColorByIndex(index)}}>
         <div className="card-body text-center mb-0 pb-1">

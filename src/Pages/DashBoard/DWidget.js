@@ -42,7 +42,7 @@ function DWidget() {
 
   return (
     <>
-      <div className="col-4">
+      <div className="col-12 col-lg-4">
         <div className="card progress-card">
           <div className="card-body d-flex">
             <div className="me-auto">
@@ -59,7 +59,7 @@ function DWidget() {
           </div>
         </div>
       </div>
-      <div className="col-4">
+      <div className="col-12 col-lg-4">
         <div className="card progress-card">
           <div className="card-body d-flex">
             <div className="me-auto">
@@ -80,7 +80,7 @@ function DWidget() {
           </div>
         </div>
       </div>
-      <div className="col-4">
+      <div className="col-12 col-lg-4">
         <div className="card progress-card">
           <div className="card-body d-flex">
             <div className="me-auto">
