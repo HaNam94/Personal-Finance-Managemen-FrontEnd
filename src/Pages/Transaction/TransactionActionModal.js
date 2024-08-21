@@ -12,7 +12,7 @@ function TransactionActionModal({reload}) {
   const handleShow = () => setShow(true);
   return (
     <div className="main-action">
-      <Button className="btn-sm ms-2" variant="primary" onClick={handleShow}>
+      <Button className="btn-sm ms-2 px-1" variant="primary" onClick={handleShow}>
         <span className="mx-2">{t("addTransaction")}</span>
         <i className="fa-solid fa-plus"></i>
       </Button>
