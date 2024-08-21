@@ -2,8 +2,10 @@ import {FormattedNumber} from "react-intl";
 import {Link} from "react-router-dom";
 import BudgetDelete from "./BudgetDelete";
 import CategoryTransaction from "../Category/CategoryTransaction";
+import {useTranslation} from "react-i18next";
 
 function BudgetItem({budget, reload}) {
+    const { t } = useTranslation();
     return (
         <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
             <div className="d-flex align-items-center">
@@ -20,7 +22,7 @@ function BudgetItem({budget, reload}) {
                         <FormattedNumber value={budget.budgetAmount} style="currency" currency={budget.currency}/>
                     </h5>
 
-                    <p className="mb-0 lh-1">Còn lại: <FormattedNumber value={budget.budgetAmount - budget.totalAmountForMonth} style="currency" currency={budget.currency}/></p>
+                    <p className="mb-0 lh-1">{t("remaining")}: <FormattedNumber value={budget.budgetAmount - budget.totalAmountForMonth} style="currency" currency={budget.currency}/></p>
                 </div>
                 <div className="border-end px-3 flex-grow-1">
                     <div className="progress default-progress">
@@ -32,7 +34,7 @@ function BudgetItem({budget, reload}) {
                     <CategoryTransaction categoryId={budget.categoryId} isSmall={true}/>
                     <Link to={"/budgets/" + budget.id}
                           className="btn btn-rounded btn-outline-secondary btn-sm p-1 ms-2">
-                        <span className="me-2">Sửa</span>
+                        <span className="me-2">{t("edit")}</span>
                         <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
                     <BudgetDelete budget={budget} reload={reload}/>

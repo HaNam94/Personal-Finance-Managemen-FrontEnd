@@ -43,7 +43,7 @@ function Logout() {
 
           <div className="text-center mt-4">
             <Button className="mx-2" variant="secondary" onClick={handleClose}>
-            {t("logout")}
+            {t("cancel")}
             </Button>
             <Button className="mx-2" variant="success" onClick={handleLogout}>
             {t("logout")}

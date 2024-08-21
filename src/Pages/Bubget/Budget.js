@@ -10,8 +10,10 @@ import { FormattedNumber } from "react-intl";
 import { useSelector } from "react-redux";
 import Lottie from "lottie-react";
 import AniEmpty from "../../LottieData/empty.json";  
+import {useTranslation} from "react-i18next";
 
 function Budget() {
+  const { t } = useTranslation();
   const [budgets, setBudgets] = useState([]);
   const [loading, setLoading] = useState(true);
   const uCurrency = useSelector((state) => state.auth.user.setting.currency);
@@ -65,7 +67,7 @@ function Budget() {
     <div>
       <div className="text-end mb-3">
         <Link to={'/budgets/new'} className="btn btn-primary btn-sm">
-          <span className="me-2">Tạo budget mới</span>
+          <span className="me-2">{t("addNewBudget")}</span>
           <i className="fa-solid fa-plus"></i>
         </Link>
       </div>
@@ -86,7 +88,7 @@ function Budget() {
                   <div className="col-4">
                     <div className="bg-white shadow-sm p-3 rounded-3  mb-2">
                       <div className="text-center">
-                        <p className="mb-1">Số tiền có thể chi</p>
+                        <p className="mb-1">{t("amountMoney")}</p>
                         <h3 className="fw-bold">
                           <FormattedNumber value={totalBudget - totalAmount} style="currency" currency={uCurrency} />
                         </h3>
@@ -98,17 +100,17 @@ function Budget() {
                           <h5 className="fw-bold">
                             <FormattedNumber value={totalBudget} style="currency" currency={uCurrency} />
                           </h5>
-                          <p className="mb-1">Tổng</p>
+                          <p className="mb-1">{t("synthetic")}</p>
                         </div>
                         <div className="text-center">
                           <h5 className="fw-bold">
                             <FormattedNumber value={totalAmount} style="currency" currency={uCurrency} />
                           </h5>
-                          <p className="mb-1">Đã chi</p>
+                          <p className="mb-1">{t("spent")}</p>
                         </div>
                         <div className="text-center">
-                          <h5 className="fw-bold">{moment().endOf('month').diff(moment(), 'days')} ngày</h5>
-                          <p className="mb-1">Cuối tháng</p>
+                          <h5 className="fw-bold">{moment().endOf('month').diff(moment(), 'days')} {t("day")}</h5>
+                          <p className="mb-1">{t("endMonth")}</p>
                         </div>
                       </div>
                     </div>
