@@ -235,7 +235,6 @@ function Transaction() {
                   </div>
               </div>
 
-              <div>
                   <Button className="btn-sm ms-2 ps-1 pe-2 export-btn" variant="secondary" onClick={() => {
                       exportToFile("xlsx")
                   }}>
@@ -256,7 +255,6 @@ function Transaction() {
 
                   </Button>
                   <TransactionActionModal/>
-              </div>
 
           </div>
           <div className="row">
