@@ -239,7 +239,7 @@ function Transaction() {
                       exportToFile("xlsx")
                   }}>
                   <span className="mx-2">
-                                Xuất
+                  {t("export")}
                   </span>
                       {
                           exportStatus ?
