@@ -175,7 +175,6 @@ function Report() {
                         <div className="card-body d-flex">
                             <div className="me-auto">
                                 <h4 className="card-title mb-0">{t("totalTransactions")}</h4>
-                                <span className="fs-12">{t("currentMonth")}</span>
                                 <div className="d-flex align-items-center mt-2">
                                     <h2 className="fs-34 mb-0 me-3">{
                                         loading ? "-" :
@@ -192,7 +191,6 @@ function Report() {
                         <div className="card-body d-flex">
                             <div className="me-auto">
                                 <h4 className="card-title mb-0">{t("totalIncome")}</h4>
-                                <span className="fs-12">{t("currentMonth")}</span>
                                 <div className="d-flex align-items-center mt-2">
                                     <h2 className="fs-34 mb-0 me-3">
                                         {
@@ -213,7 +211,6 @@ function Report() {
                         <div className="card-body d-flex">
                             <div className="me-auto">
                                 <h4 className="card-title mb-0">{t("totalExpense")}</h4>
-                                <span className="fs-12">{t("currentMonth")}</span>
                                 <div className="d-flex align-items-center mt-2">
                                     <h2 className="fs-34 mb-0 me-3">
                                         {
