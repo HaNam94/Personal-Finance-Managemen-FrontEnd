@@ -5,6 +5,7 @@ import Helper from '../../utils/helpers';
 import Footer from "../../Components/Footer";
 import Orb from "../../Components/Orb/Orb";
 import PasswordInput from '../../Components/Auth/PasswordInput';
+import AuthApi from "../../Apis/AuthApi";
 
 function ResetPassword() {
   const [password, setPassword] = useState('');
@@ -25,14 +26,10 @@ function ResetPassword() {
       return;
     }
     try {
-      await axios.post('http://localhost:8080/api/v1/public/reset-password', {
+      await AuthApi.resetPassword({
         token,
         newPassword: password,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+      })
       Helper.toastSuccess('Mật khẩu đã được đặt lại thành công.');
       navigate('/login');
     } catch (error) {
