@@ -47,7 +47,7 @@ function CategoryNew() {
   return (
     <div className="card">
       <div className="card-body">
-        <CategoryForm formik={formik}/>
+        <CategoryForm formik={formik} isCreate={true}/>
       </div>
     </div>
   );

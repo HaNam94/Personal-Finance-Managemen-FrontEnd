@@ -71,9 +71,9 @@ function ForgotPassword() {
                         <div className="text-center">
                           <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
                             {isLoading ? (
-                              <div className="spinner-border spinner-border-sm" role="status">
+              `                <div className="spinner-border spinner-border-sm" role="status">
                                 <span className="visually-hidden">Loading...</span>
-                              </div>
+                              </div>`
                             ) : (
                               'Gửi'
                             )}

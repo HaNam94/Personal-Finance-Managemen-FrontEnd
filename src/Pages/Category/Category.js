@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react";
 import Skeleton from "react-loading-skeleton";
 import CategoryItem from "./CategoryItem";
 import {Link} from "react-router-dom";

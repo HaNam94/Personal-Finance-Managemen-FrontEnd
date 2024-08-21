@@ -25,5 +25,12 @@ class TransactionApi{
     static async search(data) {
         return axiosInstance.get(url + '/search', {params: data});
     }
+
+    static async exportFile(data) {
+        return axiosInstance.get('/api/v1/transaction/export', {
+            responseType: "blob",
+            params: data
+        }   );
+    }
 }
 export default TransactionApi;

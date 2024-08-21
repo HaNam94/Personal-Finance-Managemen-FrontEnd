@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
-function CategoryForm({formik, submitText = "Tạo mới" }) {
+function CategoryForm({formik, isCreate = false }) {
 
   const { t } = useTranslation();
   const categoryTypeOptions = [{type: "income", value: 1}, {type: "outcome", value: 0}].map(el => {
@@ -94,7 +94,10 @@ function CategoryForm({formik, submitText = "Tạo mới" }) {
 
       <div className="text-end">
           <Link to={"/categories"} className="btn btn-secondary btn-sm">{t("cancel")}</Link>
-          <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>{submitText}
+          <button type="submit" className="btn btn-success mx-2 px-4 btn-sm" disabled={formik.isSubmitting}>
+            {
+              isCreate ? t("add") : t("update")
+            }
           </button>
       </div>
     </form>

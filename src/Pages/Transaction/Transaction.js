@@ -13,6 +13,7 @@ import moment from "moment";
 import {useSelector} from "react-redux";
 import Select from "react-select";
 import {useTranslation} from "react-i18next";
+import {Button} from "react-bootstrap";
 
 
 function Transaction() {
@@ -28,6 +29,7 @@ function Transaction() {
     const statusReloadWallet = useSelector((state) => state.wallet.status);
     const categories = useSelector((state) => state.category.allCategories);
     const wallets = useSelector((state) => state.wallet.wallets);
+    const [exportStatus, setExportStatus] = useState(false);
 
 
     useEffect(() => {
@@ -131,6 +133,33 @@ function Transaction() {
         })
     }
 
+
+    const exportToFile = async (type) => {
+        setExportStatus(true);
+        try {
+            await Helper.delay(1000);
+            const response = await TransactionApi.exportFile({
+                categoryType,
+                startDate: startDate.format('YYYY-MM-DD'),
+                endDate: endDate.format('YYYY-MM-DD'),
+                categoryId: category?.id,
+                walletId: wallet?.id,
+                fileType: type
+            });
+
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `transactions-${moment().valueOf()}.${type}`);
+            document.body.appendChild(link);
+            link.click();
+        } catch (error) {
+            console.error('Error exporting to Excel:', error);
+        } finally {
+            setExportStatus(false);
+        }
+    };
+
   return (
       <div>
           <div className="d-flex flex-wrap align-items-center mb-3">
@@ -206,13 +235,31 @@ function Transaction() {
                   </div>
               </div>
 
+              <Button className="btn-sm ms-2 ps-1 pe-2" variant="secondary" onClick={() => {
+                  exportToFile("xlsx")
+              }}>
+                  <span className="mx-2">
+                                Xuất
+                  </span>
+                  {
+                      exportStatus ?
+                          <div className="spinner-border spinner-border-sm" role="status">
+                              <span className="visually-hidden">Loading...</span>
+                          </div>
+                          :
+                          <>
 
-                <TransactionActionModal/>
-            </div>
-            <div className="row">
-                <div className="col-12">
-                    {
-                        transactions === null ? (
+                              <i className="fa-solid fa-arrow-up-from-bracket"></i>
+                          </>
+                  }
+
+              </Button>
+              <TransactionActionModal/>
+          </div>
+          <div className="row">
+          <div className="col-12">
+                  {
+                      transactions === null ? (
                             <Skeleton count={2} height={200}/>
                         ) : (
                             <>{

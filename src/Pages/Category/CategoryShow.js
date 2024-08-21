@@ -76,7 +76,6 @@ function CategoryShow() {
             ) : (
               <CategoryForm
                 formik={formik}
-                submitText={"Cập nhật"}
               />
             )
           }
