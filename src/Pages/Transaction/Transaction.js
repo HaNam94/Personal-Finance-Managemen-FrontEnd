@@ -24,7 +24,7 @@ function Transaction() {
     const [wallet, setWallet] = useState({id: '', walletName: t("wallet"), icon: "icon_000"});
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
-    const [startDate, setStartDate] = useState(moment().subtract(30, 'days'));
+    const [startDate, setStartDate] = useState(moment().startOf('year'));
     const [endDate, setEndDate] = useState(moment());
     const statusReloadWallet = useSelector((state) => state.wallet.status);
     const categories = useSelector((state) => state.category.allCategories);

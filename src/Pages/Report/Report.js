@@ -80,7 +80,7 @@ function Report() {
             if (!transactionSums[date]) {
                 transactionSums[date] = { Thu: 0, Chi: 0 };
             }
-            transactionSums[date][type] += convertCurrency(transaction.amount, transaction.walletCurrency).toFixed(2);
+            transactionSums[date][type] += convertCurrency(transaction.amount, transaction.walletCurrency);
         });
 
         const dateRange = [];
@@ -94,8 +94,8 @@ function Report() {
         const chiData = [];
 
         dateRange.forEach(date => {
-            thuData.push(transactionSums[date]?.Thu || 0);
-            chiData.push(transactionSums[date]?.Chi || 0);
+            thuData.push(transactionSums[date]?.Thu.toFixed(2) || 0);
+            chiData.push(transactionSums[date]?.Chi.toFixed(2) || 0);
         });
         console.log([
             { name: 'Thu', data: thuData },

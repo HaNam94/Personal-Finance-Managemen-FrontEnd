@@ -26,7 +26,7 @@ function TransactionEditModal({transactionId}){
     const [selectedOptionWallet, setSelectedOptionWallet] = useState(null);
     const [transaction, setTransaction] = useState(null );
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.category.categories);
+    const categories = useSelector((state) => state.category.allCategories);
 
 
 

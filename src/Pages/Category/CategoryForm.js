@@ -4,10 +4,10 @@ import {useTranslation} from "react-i18next";
 function CategoryForm({formik, isCreate = false }) {
 
   const { t } = useTranslation();
-  const categoryTypeOptions = [{type: "income", value: 1}, {type: "outcome", value: 0}].map(el => {
+  const categoryTypeOptions = [{type: "income", name: "Thu", value: 1}, {type: "outcome", name: "Chi", value: 0}].map(el => {
     return (
       <option key={el.value} value={el.value}>
-        {el.type}
+        {el.name}
       </option>
     );
   });
