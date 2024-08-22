@@ -25,10 +25,6 @@ function BudgetItem({budget, reload}) {
                     <p className="mb-0 lh-1">{t("remaining")}: <FormattedNumber value={budget.budgetAmount - budget.totalAmountForMonth} style="currency" currency={budget.currency}/></p>
                 </div>
                 <div className="border-end px-3 flex-grow-1">
-                    <div className="progress default-progress">
-                        <div className="progress-bar bg-gradient-1 progress-animated" role="progressbar"
-                             style={{width: `${(budget.totalAmountForMonth / budget.budgetAmount) * 100}%`, height: '20px'}}></div>
-                    </div>
                 </div>
                 <div className=" ps-3 text-end">
                     <CategoryTransaction categoryId={budget.categoryId} isSmall={true}/>
